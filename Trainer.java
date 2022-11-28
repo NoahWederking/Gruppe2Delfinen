@@ -1,11 +1,11 @@
 public class Trainer {
 
 
-    Menu trainerMenu = new Menu("====Trainer Menu====", "Please choose a acion", new String[]
+    Menu trainerMenu = new Menu("====Trainer Menu====", "Please choose an action", new String[]
             {"1. View Competitive Team", "2. Register swim results", "3. View Top five swimmers"});
 
     Menu swimTeams = new Menu("====Swim Teams====", "Please choose a team",
-            new String[]{"1. Junior Competitive", "2. Adult Competitive", "3. Adult Swimmers", "4. Senior Swimmer",
+            new String[]{"1. Junior Competitive", "2. Adult Competitive", "3. Adult Swimmers", "4. Senior Swimmers",
                     "5. Junior Swimmers", "9. Quit"});
 
     boolean isRunning;
@@ -17,7 +17,7 @@ public class Trainer {
             switch (choice) {
                 case 1 -> viewSwimTeams();
                 case 2 -> System.out.println("Register swim results");
-                case 3 -> System.out.println("top 5");
+                case 3 -> System.out.println("Top 5");
                 case 9 -> {System.out.println("Quit"); isRunning = false;}
                 default -> System.out.println("Invalid input");
             }
@@ -39,4 +39,5 @@ public class Trainer {
             }
         } while(isBack);
     }
+
 }
