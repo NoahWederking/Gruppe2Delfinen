@@ -76,6 +76,7 @@ public class Member {
         checkAge();
         checkCompetitive();
     }
+
     public void checkAge() {
         if (getAge() < 18) {
             juniorSwimmers.add(new Member(getName(), getAge(), isCompetitive()));
@@ -147,7 +148,15 @@ public class Member {
         }
     }
 
-    public void changeMembership() {
+    public void membershipState() {
+        Scanner scanner = new Scanner(System.in);
+        for (int i = 0; i < juniorSwimmers.size(); i++) {
+            System.out.println(juniorSwimmers.get(i));
+        }
+        System.out.println("Choose index of which member to turn passive");
+        int answer = scanner.nextInt();
+        juniorSwimmers.get(answer);
+        //TODO Being able to select index in array
 
     }
 
