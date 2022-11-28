@@ -3,7 +3,7 @@ public class Main {
         Menu generalMenu = new Menu("=====Dolphin swimmers menu=====", "Please choose user: ",
                 new String[]{"1. Trainer", "2. Cashier", "3. Chairman", "9. Quit"});
         Member member = new Member();
-
+        Trainer trainer = new Trainer();
 
         boolean isRunning = true;
         do {
@@ -11,8 +11,8 @@ public class Main {
             int choice = generalMenu.readChoice();
 
             switch (choice) {
-                case 1 -> member.createMember();
-                case 2 -> member.printList();
+                case 1 -> trainer.trainerMenu();
+                case 2 -> System.out.println();
                 case 3 -> System.out.println();
                 case 9 -> {
                     System.out.println("quit");
