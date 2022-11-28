@@ -9,7 +9,6 @@ public class Member {
 
 
     //Setters
-
     public void setJuniorSwimmer(String juniorSwimmer){
         this.juniorSwimmer = juniorSwimmer;
     }
