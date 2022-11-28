@@ -1,5 +1,6 @@
-public class Member {
+import java.util.ArrayList;
 
+public abstract class Member {
 
     //Attributes
     private String juniorSwimmer;
@@ -7,6 +8,9 @@ public class Member {
     private boolean isCompetitive;
     private String adultSwimmers; // between 18-60 years.
 
+    //Instances
+    ArrayList<Member>teamOne = new ArrayList<>();
+    ArrayList<Member>teamTwo = new ArrayList<>();
 
     //Setters
     public void setJuniorSwimmer(String juniorSwimmer){
@@ -42,5 +46,8 @@ public class Member {
     public boolean isCompetitive() {
         return isCompetitive;
     }
+
+    //Methods
+
 
 }
