@@ -1,4 +1,4 @@
-public class Trainer extends Member {
+public class Trainer {
 
 
     Menu trainerMenu = new Menu("====Trainer Menu====", "Please choose a acion", new String[]

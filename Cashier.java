@@ -1,2 +1,2 @@
-public class Cashier extends Member{
+public class Cashier {
 }

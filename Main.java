@@ -15,7 +15,7 @@ public class Main {
                 case 2 -> System.out.println();
                 case 3 -> System.out.println();
                 case 9 -> {
-                    System.out.println("quit");
+                    System.out.println("Quit");
                     isRunning = false;
                 }
                 default -> {

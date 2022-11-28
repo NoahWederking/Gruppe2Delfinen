@@ -20,7 +20,6 @@ public class Member {
     ArrayList<Member> juniorSwimmers = new ArrayList<>();
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
-
     Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", menuItems);
 
     //Setters
@@ -77,7 +76,6 @@ public class Member {
         checkAge();
         checkCompetitive();
     }
-
     public void checkAge() {
         if (getAge() < 18) {
             juniorSwimmers.add(new Member(getName(), getAge(), isCompetitive()));
@@ -147,7 +145,9 @@ public class Member {
                 memberLists.readChoice();
             }
         }
+    }
 
+    public void changeMembership() {
 
     }
 
