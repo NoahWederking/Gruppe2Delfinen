@@ -3,16 +3,15 @@ import java.util.Scanner;
 
 public class Member {
 
+
+    // Lavet af Philip, Oliver og Noah
+
     //Attributes
     private int age;
     private String name;
     private boolean isCompetitive;
-    private String[] menuItems = new String[]{
-            "1. Junior swimmers. \n" +
-                    "2. Senior swimmers. \n" +
-                    "3. Adult swimmers. \n" +
-                    "4. Competitive swimmers over 18. \n" +
-                    "5. Competitive swimmers under 18."};
+    private boolean isActive;
+
 
     //Instances
     ArrayList<Member> competitiveTeamOverEighteen = new ArrayList<>();
@@ -20,7 +19,12 @@ public class Member {
     ArrayList<Member> juniorSwimmers = new ArrayList<>();
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
-    Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", menuItems);
+    Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ",new String[]{
+            "1. Junior swimmers." +
+                    "2. Senior swimmers." +
+                    "3. Adult swimmers." +
+                    "4. Competitive swimmers over 18." +
+                    "5. Competitive swimmers under 18."} );
 
     //Setters
     public void setName(String name) {
@@ -54,6 +58,7 @@ public class Member {
         setName(name);
         setAge(age);
         isCompetitive(isCompetitive);
+        this.isActive = true;
     }
 
     public Member() {
@@ -92,22 +97,26 @@ public class Member {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Is member competitive? \n 1. Yes \n 2. No");
         String competitive = scanner.nextLine();
-        if (competitive.equals("1")) {
-            isCompetitive(true);
-            if (getAge() < 18) {
-                competitiveTeamUnderEighteen.add(new Member(getName(), getAge(), isCompetitive()));
+        boolean isRunning = true;
 
-            } else if (getAge() > 18) {
-                competitiveTeamOverEighteen.add(new Member(getName(), getAge(), isCompetitive()));
+        while (isRunning) {
+            if (competitive.equals("1")) {
+                isCompetitive(true);
+                if (getAge() < 18) {
+                    competitiveTeamUnderEighteen.add(new Member(getName(), getAge(), isCompetitive()));
 
-            }
+                } else if (getAge() > 18) {
+                    competitiveTeamOverEighteen.add(new Member(getName(), getAge(), isCompetitive()));
 
-        } else if (competitive.equals("2")) {
-            isCompetitive(false);
+                }
 
-        } else {
-            System.out.println("Invalid input");
-        } //TODO Loop if invalid
+            } else if (competitive.equals("2")) {
+                isCompetitive(false);
+
+            } else {
+                System.out.println("Invalid input");
+            } //TODO Loop if invalid
+        }
     }
 
     public void printList() {
