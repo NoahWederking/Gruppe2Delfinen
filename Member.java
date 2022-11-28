@@ -7,12 +7,7 @@ public class Member {
     private int age;
     private String name;
     private boolean isCompetitive;
-    private String[] menuItems = new String[]{
-            "1. Junior swimmers. \n" +
-                    "2. Senior swimmers. \n" +
-                    "3. Adult swimmers. \n" +
-                    "4. Competitive swimmers over 18. \n" +
-                    "5. Competitive swimmers under 18."};
+
 
     //Instances
     ArrayList<Member> competitiveTeamOverEighteen = new ArrayList<>();
@@ -21,7 +16,10 @@ public class Member {
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
 
-    Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", menuItems);
+    //Menu der hjælper med at printe members
+    Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ",new String[]{
+            "1. Junior swimmers." + "2. Senior swimmers." + "3. Adult swimmers." + "4. Competitive swimmers over 18." +
+                    "5. Competitive swimmers under 18."} );
 
     //Setters
     public void setName(String name) {
@@ -78,6 +76,7 @@ public class Member {
         checkCompetitive();
     }
 
+    //Checker age når der bliver lavet nyt member
     public void checkAge() {
         if (getAge() < 18) {
             juniorSwimmers.add(new Member(getName(), getAge(), isCompetitive()));
