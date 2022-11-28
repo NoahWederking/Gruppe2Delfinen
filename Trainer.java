@@ -1,5 +1,7 @@
 public class Trainer {
 
+    // Lavet af Oliver, Noah og Philip
+
 
     Menu trainerMenu = new Menu("====Trainer Menu====", "Please choose an action", new String[]
             {"1. View Competitive Team", "2. Register swim results", "3. View Top five swimmers"});
