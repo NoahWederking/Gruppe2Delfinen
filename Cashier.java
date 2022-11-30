@@ -1,13 +1,19 @@
 public class Cashier {
 
     //Attributes
+    private final Member member;
     private boolean isRunning;
 
     //Instances
     Menu cashierMenu = new Menu("====Cashier Menu====", "Please choose: ", new String[]
             {"1. View member state", "2. Change member state", "9. Quit"});
-    Member member = new Member();
 
+    //Constructors
+    public Cashier(Member member) {
+        this.member = member;
+    }
+
+    //Methods
     public void cashierMenu() {
         cashierMenu.printMenu();
         int choice = cashierMenu.readChoice();

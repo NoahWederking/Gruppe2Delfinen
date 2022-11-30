@@ -1,15 +1,22 @@
 
 public class Chairman {
+
     //Attributes
     private boolean isRunning;
+    private final Member member;
 
     //Instances
     CompetitveMember newCompetitiveSwimmer;
-    Member member = new Member();
     Menu chairmanMenu = new Menu("====Chairman Menu====", "Please choose: ", new String[]
             {"1. Create new member", "2. Create new competitive member", "3. View member list",
                     "4. Change membership status", "9. To go back"});
 
+    //Constructors
+    public Chairman(Member member) {
+        this.member = member;
+    }
+
+    //Methods
     public void chairmanMenu() {
         do {
             chairmanMenu.printMenu();

@@ -1,13 +1,11 @@
 public class Trainer {
 
-    // Lavet af Oliver, Noah og Philip
-
     //Attributes
     boolean isRunning;
     boolean isBack;
+    private final Member member;
 
     //Instances
-    Member member = new Member();
     Menu trainerMenu = new Menu("====Trainer Menu====", "Please choose an action", new String[]
             {"1. View Competitive Team", "2. Register swim results", "3. View Top five swimmers"});
 
@@ -15,6 +13,12 @@ public class Trainer {
             new String[]{"1. Junior Competitive", "2. Adult Competitive", "3. Adult Swimmers", "4. Senior Swimmers",
                     "5. Junior Swimmers", "9. Quit"});
 
+    //Constructors
+    public Trainer(Member member) {
+        this.member = member;
+    }
+
+    //Methods
     public void trainerMenu() {
         trainerMenu.printMenu();
         int choice = trainerMenu.readChoice();

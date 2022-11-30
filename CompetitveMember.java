@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class CompetitveMember extends Member {
 
-
     //Attributes-----------
     private String swimStyle;
     private double bestTime;
@@ -11,21 +10,23 @@ public class CompetitveMember extends Member {
     private String name;
     private int age;
 
-    ArrayList<CompetitveMember> competitiveSwimmersUnder18 = new ArrayList<>();
+    //Instances
+    //ArrayList<CompetitveMember> competitiveSwimmersUnder18 = new ArrayList<>();
     ArrayList<CompetitveMember> competitiveSwimmersOver18 = new ArrayList<>();
     ArrayList<CompetitveMember> crawl = new ArrayList<>();
     ArrayList<CompetitveMember> breaststrokeSwimmers = new ArrayList<>();
     Member member = new Member();
 
+    //Constructors
     public CompetitveMember(String name, int age, String swimStyle, double bestTime, int latestPosition){
         super(name,age);
         setSwimStyle(swimStyle);
         setBestTime(bestTime);
         setLatestPosition(latestPosition);
     }
-    public CompetitveMember() {
+   /* public CompetitveMember() {
 
-    }
+    }*/
 
     //SETTERS---------
     public void setSwimStyle(String swimStyle){
@@ -54,6 +55,7 @@ public class CompetitveMember extends Member {
         super.createMember();
     }
 
+    //Methods
     public void printCompMem(){
         System.out.println(getName());
         System.out.println(getAge());

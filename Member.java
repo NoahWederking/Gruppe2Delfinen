@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 public class Member {
 
-    // Lavet af Philip, Oliver og Noah
-
     //Attributes
     private int age;
     private String name;
@@ -20,7 +18,7 @@ public class Member {
     }
 
     //Instances
-    CompetitveMember competitveMember = new CompetitveMember();
+  /*  CompetitveMember competitveMember = new CompetitveMember();*/
     ArrayList<Member> juniorSwimmers = new ArrayList<>();
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
@@ -106,14 +104,14 @@ public class Member {
                 }
             }
             case 4 -> {
-                for (Member member : competitveMember.competitiveSwimmersOver18) {
+               /* for (Member member : competitveMember.competitiveSwimmersOver18) {
                     System.out.println(member);
-                }
+                }*/
             }
             case 5 -> {
-                for (Member member : competitveMember.competitiveSwimmersUnder18) {
+               /* for (Member member : competitveMember.competitiveSwimmersUnder18) {
                     System.out.println(member);
-                }
+                }*/
             }
             default -> {
                 System.out.println("Invalid input.");
@@ -138,10 +136,10 @@ public class Member {
                 passiveMembers(scanner, adultSwimmers);
             }
             case 4 -> {
-                passiveCompetetiveMember(scanner, competitveMember.competitiveSwimmersOver18);
+              /*  passiveCompetetiveMember(scanner, competitveMember.competitiveSwimmersOver18);*/
             }
             case 5 -> {
-                passiveCompetetiveMember(scanner, competitveMember.competitiveSwimmersUnder18);
+                /*passiveCompetetiveMember(scanner, competitveMember.competitiveSwimmersUnder18);*/
             }
             default -> {
                 System.out.println("Invalid input.");
@@ -156,42 +154,40 @@ public class Member {
             System.out.println(juniorSwimmers.get(i));
             System.out.println("Please select the index of which member to make passive.");
             int index = scanner.nextInt();
-            juniorSwimmers.remove(index);
             passiveSwimmers.add(juniorSwimmers.get(index));
+            juniorSwimmers.remove(index);
+
         }
     }
 
-    private void passiveCompetetiveMember(Scanner scanner, ArrayList<CompetitveMember> juniorSwimmers) {
-        for (int i = 0; i < juniorSwimmers.size(); i++) {
-            System.out.println(juniorSwimmers.get(i));
+    private void passiveCompetetiveMember(Scanner scanner, ArrayList<CompetitveMember> swimmers) {
+        for (int i = 0; i < swimmers.size(); i++) {
+            System.out.println(swimmers.get(i));
             System.out.println("Please select the index of which member to make passive.");
             int index = scanner.nextInt();
-            juniorSwimmers.remove(index);
-            passiveSwimmers.add(juniorSwimmers.get(index));
+            swimmers.remove(index);
+            passiveSwimmers.add(swimmers.get(index));
         }
     }
 
     public void viewMembershipState() {
         memberPrices.printMenu();
-        int chooseList = memberPrices .readChoice();
+        int chooseList = memberPrices.readChoice();
 
         switch (chooseList) {
             case 1 -> {
                 for (Member member : juniorSwimmers) {
-                    System.out.println(member);
-                    System.out.print(" Price: 500 DKK.");
+                    System.out.println(member + " Price: 500 DKK.");
                 }
             }
             case 2 -> {
                 for (Member member : seniorSwimmers) {
-                    System.out.println(member);
-                    System.out.print(" Price: 1200 DKK.");
+                    System.out.println(member + " Price: 1200 DKK.");
                 }
             }
             case 3 -> {
                 for (Member member : adultSwimmers) {
-                    System.out.println(member);
-                    System.out.print(" Price: 1600 DKK.");
+                    System.out.println(member + " Price: 1600 DKK.");
                 }
             }
             default -> {

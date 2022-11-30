@@ -1,8 +1,6 @@
 public class Main {
     public void run() {
 
-        //TODO FIX CREATECOMPETETIVEMEMBER, FIX VIEWMEMBERSHIP STATE, FIX PASSIVEMEMBERSHIP
-
         /*CompetitveMember cm = new CompetitveMember("Noah",2,"Crawl",4.5,3);
         System.out.println(cm);
         cm.printCompMem();*/
@@ -11,12 +9,12 @@ public class Main {
         boolean isRunning = true;
 
         //Instances
+        Member member = new Member();
         Menu generalMenu = new Menu("=====Dolphin swimmers menu=====", "Please choose user: ",
                 new String[]{"1. Trainer", "2. Cashier", "3. Chairman", "9. Quit"});
-        Trainer trainer = new Trainer();
-        Chairman chairman = new Chairman();
-        Cashier cashier = new Cashier();
-
+        Trainer trainer = new Trainer(member);
+        Chairman chairman = new Chairman(member);
+        Cashier cashier = new Cashier(member);
 
         do {
             generalMenu.printMenu();
