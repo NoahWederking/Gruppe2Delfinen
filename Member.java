@@ -81,29 +81,7 @@ public class Member {
             adultSwimmers.add(new Member(getName(), getAge()));
         }
     }
-///slettes!!!!!!!!!!!!!!!!!!!!! TODO
-   /* public void checkCompetitive() { //TODO FIX COMPETITIVE BUG
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Is member competitive? \n 1. Yes \n 2. No");
-        String competitive = scanner.nextLine();
 
-        if (competitive.equals("1")) {
-
-            if (getAge() < 18) {
-                competitiveTeamUnderEighteen.add(new Member(getName(), getAge()));
-
-            } else if (getAge() > 18) {
-                competitiveTeamOverEighteen.add(new Member(getName(), getAge()));
-
-            }
-
-        } else if (competitive.equals("2")) {
-
-
-        } else {
-            System.out.println("Invalid input");
-        } //TODO Loop if invalid
-    }*/
 
     public void printList() {
         memberLists.printMenu();
