@@ -11,8 +11,8 @@ public class CompetitveMember extends Member{
     ArrayList<CompetitveMember> crawlSwimmers = new ArrayList<>();
     ArrayList<CompetitveMember> breaststrokeSwimmers = new ArrayList<>();
 
-    public CompetitveMember(String swimStyle, double bestTime, int latestPosition){
-        super();
+    public CompetitveMember(String name, int age, String swimStyle, double bestTime, int latestPosition){
+        super(name,age);
         setSwimStyle(swimStyle);
         setBestTime(bestTime);
         setLatestPosition(latestPosition);
@@ -42,4 +42,22 @@ public class CompetitveMember extends Member{
         return latestPosition;
     }
 
+
+
+    public void printCompMem(){
+        System.out.println(getName());
+        System.out.println(getAge());
+        System.out.println(getSwimStyle());
+        System.out.println(getBestTime());
+        System.out.println(getLatestPosition());
+    }
+
+    @Override
+    public String toString() {
+        return "CompetitveMember{" +
+                "swimStyle='" + swimStyle + '\'' +
+                ", bestTime=" + bestTime +
+                ", latestPosition=" + latestPosition +
+                '}';
+    }
 }

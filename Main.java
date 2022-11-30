@@ -1,6 +1,10 @@
 public class Main {
     public void run() {
 
+        CompetitveMember cm = new CompetitveMember("Noah",2,"Crawl",4.5,3);
+        System.out.println(cm);
+        cm.printCompMem();
+
         //Attributes
         boolean isRunning = true;
 
