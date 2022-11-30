@@ -20,7 +20,6 @@ public class CompetitveMember extends Member{
 
 
     //SETTERS---------
-
     public void setSwimStyle(String swimStyle){
         this.swimStyle = swimStyle;
     }
