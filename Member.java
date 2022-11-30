@@ -9,9 +9,19 @@ public class Member {
     private int age;
     private String name;
 
+    //Constructors
+    public Member(String name, int age) {
+        setName(name);
+        setAge(age);
+    }
+
+    public Member() {
+
+    }
+
     //Instances
-    ArrayList<Member> competitiveTeamOverEighteen = new ArrayList<>();
-    ArrayList<Member> competitiveTeamUnderEighteen = new ArrayList<>();
+    CompetitveMember competitveMember = new CompetitveMember();
+
     ArrayList<Member> juniorSwimmers = new ArrayList<>();
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
@@ -43,17 +53,6 @@ public class Member {
     }
 
 
-
-    //Constructors
-    public Member(String name, int age) {
-        setName(name);
-        setAge(age);
-    }
-
-    public Member() {
-
-    }
-
     //Methods
     public void createMember() {
         Scanner scanner = new Scanner(System.in);
@@ -66,7 +65,6 @@ public class Member {
         age = scanner.nextInt();
         scanner.nextLine();
         setAge(age);
-
         checkAge();
     }
 
@@ -104,12 +102,12 @@ public class Member {
                 }
             }
             case 4 -> {
-                for (Member member : competitiveTeamOverEighteen) {
+                for (Member member : competitveMember.competitiveSwimmersOver18) {
                     System.out.println(member);
                 }
             }
             case 5 -> {
-                for (Member member : competitiveTeamUnderEighteen) {
+                for (Member member : competitveMember.competitiveSwimmersUnder18) {
                     System.out.println(member);
                 }
             }
@@ -136,10 +134,10 @@ public class Member {
                 passiveMembers(scanner, adultSwimmers);
             }
             case 4 -> {
-                passiveMembers(scanner, competitiveTeamOverEighteen);
+                passiveMembers(scanner,competitveMember.competitiveSwimmersOver18);
             }
             case 5 -> {
-                passiveMembers(scanner, competitiveTeamUnderEighteen);
+                passiveMembers(scanner,competitveMember.competitiveSwimmersUnder18);
             }
             default -> {
                 System.out.println("Invalid input.");
