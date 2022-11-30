@@ -11,6 +11,13 @@ public class CompetitveMember extends Member{
     ArrayList<CompetitveMember> crawlSwimmers = new ArrayList<>();
     ArrayList<CompetitveMember> breaststrokeSwimmers = new ArrayList<>();
 
+    public CompetitveMember(String swimStyle, double bestTime, int latestPosition){
+        super();
+        setSwimStyle(swimStyle);
+        setBestTime(bestTime);
+        setLatestPosition(latestPosition);
+    }
+
 
     //SETTERS---------
 
