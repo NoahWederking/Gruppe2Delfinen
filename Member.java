@@ -8,7 +8,6 @@ public class Member {
     //Attributes
     private int age;
     private String name;
-    private boolean isCompetitive;
 
     //Instances
     ArrayList<Member> competitiveTeamOverEighteen = new ArrayList<>();
@@ -33,9 +32,6 @@ public class Member {
         this.age = age;
     }
 
-    public void isCompetitive(boolean isCompetitive) {
-        this.isCompetitive = isCompetitive;
-    }
 
     //Getters
     public String getName() {
@@ -46,15 +42,12 @@ public class Member {
         return age;
     }
 
-    public boolean isCompetitive() {
-        return isCompetitive;
-    }
+
 
     //Constructors
-    public Member(String name, int age, boolean isCompetitive) {
+    public Member(String name, int age) {
         setName(name);
         setAge(age);
-        isCompetitive(isCompetitive);
     }
 
     public Member() {
@@ -75,43 +68,42 @@ public class Member {
         setAge(age);
 
         checkAge();
-        checkCompetitive();
     }
 
     public void checkAge() {
         if (age < 18) {
-            juniorSwimmers.add(new Member(getName(), getAge(), isCompetitive()));
+            juniorSwimmers.add(new Member(getName(), getAge()));
 
         } else if (age > 60) {
-            seniorSwimmers.add(new Member(getName(), getAge(), isCompetitive()));
+            seniorSwimmers.add(new Member(getName(), getAge()));
 
         } else if (age > 18 && age < 60) {
-            adultSwimmers.add(new Member(getName(), getAge(), isCompetitive()));
+            adultSwimmers.add(new Member(getName(), getAge()));
         }
     }
-
-    public void checkCompetitive() { //TODO FIX COMPETITIVE BUG
+///slettes!!!!!!!!!!!!!!!!!!!!! TODO
+   /* public void checkCompetitive() { //TODO FIX COMPETITIVE BUG
         Scanner scanner = new Scanner(System.in);
         System.out.println("Is member competitive? \n 1. Yes \n 2. No");
         String competitive = scanner.nextLine();
 
         if (competitive.equals("1")) {
-            isCompetitive(true);
+
             if (getAge() < 18) {
-                competitiveTeamUnderEighteen.add(new Member(getName(), getAge(), isCompetitive()));
+                competitiveTeamUnderEighteen.add(new Member(getName(), getAge()));
 
             } else if (getAge() > 18) {
-                competitiveTeamOverEighteen.add(new Member(getName(), getAge(), isCompetitive()));
+                competitiveTeamOverEighteen.add(new Member(getName(), getAge()));
 
             }
 
         } else if (competitive.equals("2")) {
-            isCompetitive(false);
+
 
         } else {
             System.out.println("Invalid input");
         } //TODO Loop if invalid
-    }
+    }*/
 
     public void printList() {
         memberLists.printMenu();
@@ -193,7 +185,6 @@ public class Member {
     public String toString() {
         return "Member: " + "\n" +
                 " Name: " + name +
-                " Age: " + age +
-                " isCompetitive: " + isCompetitive;
+                " Age: " + age;
     }
 }
