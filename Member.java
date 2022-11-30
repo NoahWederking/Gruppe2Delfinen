@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Member {
+public class Member implements CreateMember{
 
     // Lavet af Philip, Oliver og Noah
 
@@ -20,8 +20,7 @@ public class Member {
     }
 
     //Instances
-    CompetitveMember competitveMember = new CompetitveMember();
-
+    CompetitveMember competitveMember;
     ArrayList<Member> juniorSwimmers = new ArrayList<>();
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
@@ -134,10 +133,10 @@ public class Member {
                 passiveMembers(scanner, adultSwimmers);
             }
             case 4 -> {
-                passiveMembers(scanner,competitveMember.competitiveSwimmersOver18);
+                passiveCompetetiveMember(scanner,competitveMember.competitiveSwimmersOver18);
             }
             case 5 -> {
-                passiveMembers(scanner,competitveMember.competitiveSwimmersUnder18);
+                passiveCompetetiveMember(scanner,competitveMember.competitiveSwimmersUnder18);
             }
             default -> {
                 System.out.println("Invalid input.");

@@ -19,9 +19,6 @@ public class CompetitveMember extends Member{
         setBestTime(bestTime);
         setLatestPosition(latestPosition);
     }
-    public CompetitveMember(){
-
-    }
 
 
     //SETTERS---------
