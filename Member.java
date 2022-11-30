@@ -159,9 +159,52 @@ public class Member {
         }
     }
 
-    public void viewMembershipState() {
-
+    private void passiveCompetetiveMember(Scanner scanner, ArrayList<CompetitveMember> juniorSwimmers) {
+        for (int i = 0; i < juniorSwimmers.size(); i++) {
+            System.out.println(juniorSwimmers.get(i));
+            System.out.println("Please select the index of which member to make passive.");
+            int index = scanner.nextInt();
+            juniorSwimmers.remove(index);
+            passiveSwimmers.add(juniorSwimmers.get(index));
+        }
     }
+
+    public void viewMembershipState() {
+        memberLists.printMenu();
+        int chooseList = memberLists.readChoice();
+
+        switch (chooseList) {
+            case 1 -> {
+                for (int i = 0; i < juniorSwimmers.size(); i++) {
+                    System.out.println(juniorSwimmers.get(i));
+                    System.out.print(" Price: 1000 DKK.");
+                }
+            }
+            case 2 -> {
+                for (int i = 0; i < seniorSwimmers.size(); i++) {
+                    System.out.println(seniorSwimmers.get(i));
+                    System.out.print(" Price: 1200 DKK.");
+                }
+            }
+            case 3 -> {
+                for (int i = 0; i < adultSwimmers.size(); i++) {
+                    System.out.println(adultSwimmers.get(i));
+                    System.out.print(" Price: 1600 DKK.");
+                }
+            }
+           case 4 -> {
+               for (int i = 0; i <passiveSwimmers.size() ; i++) {
+                   System.out.println(passiveSwimmers.get(i));
+                   System.out.print(" Price: 500 DKK.");
+               }
+           }
+            default -> {
+                System.out.println("Invalid input.");
+                memberLists.readChoice();
+            }
+        }
+    }
+
 
     @Override
     public String toString() {
