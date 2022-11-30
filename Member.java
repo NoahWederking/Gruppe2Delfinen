@@ -16,6 +16,7 @@ public class Member {
     ArrayList<Member> juniorSwimmers = new ArrayList<>();
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
+    ArrayList<Member> passiveSwimmers = new ArrayList<>();
     Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", new String[]{
             "1. Junior swimmers." + "\n" +
                     "2. Senior swimmers." + "\n" +
@@ -54,7 +55,6 @@ public class Member {
         setName(name);
         setAge(age);
         isCompetitive(isCompetitive);
-        boolean isActive = true;
     }
 
     public Member() {
@@ -152,12 +152,41 @@ public class Member {
 
     public void membershipState() {
         Scanner scanner = new Scanner(System.in);
+        memberLists.printMenu();
+        int chooseList = memberLists.readChoice();
+
+        switch (chooseList) {
+            case 1 -> {
+                passiveMembers(scanner, juniorSwimmers);
+            }
+            case 2 -> {
+                passiveMembers(scanner, seniorSwimmers);
+            }
+            case 3 -> {
+                passiveMembers(scanner, adultSwimmers);
+            }
+            case 4 -> {
+                passiveMembers(scanner, competitiveTeamOverEighteen);
+            }
+            case 5 -> {
+                passiveMembers(scanner, competitiveTeamUnderEighteen);
+            }
+            default -> {
+                System.out.println("Invalid input.");
+                memberLists.readChoice();
+            }
+        }
+        System.out.println("You have now added member to passive list.");
+    }
+
+    private void passiveMembers(Scanner scanner, ArrayList<Member> juniorSwimmers) {
         for (int i = 0; i < juniorSwimmers.size(); i++) {
             System.out.println(juniorSwimmers.get(i));
+            System.out.println("Please select the index of which member to make passive.");
+            int index = scanner.nextInt();
+            juniorSwimmers.remove(index);
+            passiveSwimmers.add(juniorSwimmers.get(index));
         }
-        System.out.println("Please choose the index of member to make passive: ");
-        int answer = scanner.nextInt();
-
     }
 
     @Override
