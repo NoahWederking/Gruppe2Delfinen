@@ -3,15 +3,12 @@ import java.util.Scanner;
 
 public class Member {
 
-
     // Lavet af Philip, Oliver og Noah
 
     //Attributes
     private int age;
     private String name;
     private boolean isCompetitive;
-    private boolean isActive;
-
 
     //Instances
     ArrayList<Member> competitiveTeamOverEighteen = new ArrayList<>();
@@ -19,12 +16,12 @@ public class Member {
     ArrayList<Member> juniorSwimmers = new ArrayList<>();
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
-    Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ",new String[]{
-            "1. Junior swimmers." +
-                    "2. Senior swimmers." +
-                    "3. Adult swimmers." +
-                    "4. Competitive swimmers over 18." +
-                    "5. Competitive swimmers under 18."} );
+    Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", new String[]{
+            "1. Junior swimmers." + "\n" +
+                    "2. Senior swimmers." + "\n" +
+                    "3. Adult swimmers." + "\n" +
+                    "4. Competitive swimmers over 18." + "\n" +
+                    "5. Competitive swimmers under 18."});
 
     //Setters
     public void setName(String name) {
@@ -38,7 +35,6 @@ public class Member {
     public void isCompetitive(boolean isCompetitive) {
         this.isCompetitive = isCompetitive;
     }
-
 
     //Getters
     public String getName() {
@@ -58,7 +54,7 @@ public class Member {
         setName(name);
         setAge(age);
         isCompetitive(isCompetitive);
-        this.isActive = true;
+        boolean isActive = true;
     }
 
     public Member() {
@@ -83,13 +79,13 @@ public class Member {
     }
 
     public void checkAge() {
-        if (getAge() < 18) {
+        if (age < 18) {
             juniorSwimmers.add(new Member(getName(), getAge(), isCompetitive()));
 
-        } else if (getAge() > 60) {
+        } else if (age > 60) {
             seniorSwimmers.add(new Member(getName(), getAge(), isCompetitive()));
 
-        } else if (getAge() > 18 && getAge() < 60) {
+        } else if (age > 18 && age < 60) {
             adultSwimmers.add(new Member(getName(), getAge(), isCompetitive()));
         }
     }
@@ -98,26 +94,23 @@ public class Member {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Is member competitive? \n 1. Yes \n 2. No");
         String competitive = scanner.nextLine();
-        boolean isRunning = true;
 
-        while (isRunning) {
-            if (competitive.equals("1")) {
-                isCompetitive(true);
-                if (getAge() < 18) {
-                    competitiveTeamUnderEighteen.add(new Member(getName(), getAge(), isCompetitive()));
+        if (competitive.equals("1")) {
+            isCompetitive(true);
+            if (getAge() < 18) {
+                competitiveTeamUnderEighteen.add(new Member(getName(), getAge(), isCompetitive()));
 
-                } else if (getAge() > 18) {
-                    competitiveTeamOverEighteen.add(new Member(getName(), getAge(), isCompetitive()));
+            } else if (getAge() > 18) {
+                competitiveTeamOverEighteen.add(new Member(getName(), getAge(), isCompetitive()));
 
-                }
+            }
 
-            } else if (competitive.equals("2")) {
-                isCompetitive(false);
+        } else if (competitive.equals("2")) {
+            isCompetitive(false);
 
-            } else {
-                System.out.println("Invalid input");
-            } //TODO Loop if invalid
-        }
+        } else {
+            System.out.println("Invalid input");
+        } //TODO Loop if invalid
     }
 
     public void printList() {
@@ -162,10 +155,8 @@ public class Member {
         for (int i = 0; i < juniorSwimmers.size(); i++) {
             System.out.println(juniorSwimmers.get(i));
         }
-        System.out.println("Choose index of which member to turn passive");
+        System.out.println("Please choose the index of member to make passive: ");
         int answer = scanner.nextInt();
-        juniorSwimmers.get(answer);
-        //TODO Being able to select index in array
 
     }
 
