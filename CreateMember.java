@@ -1,5 +1,5 @@
 public interface CreateMember {
 
-    public void checkage();
+    public void checkAge();
     public void createMember();
 }
