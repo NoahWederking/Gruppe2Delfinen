@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 public class CompetitveMember extends Member{
 
@@ -7,6 +7,10 @@ public class CompetitveMember extends Member{
     private String swimStyle;
     private double bestTime;
     private int latestPosition;
+
+    ArrayList<CompetitveMember> crawlSwimmers = new ArrayList<>();
+    ArrayList<CompetitveMember> breaststrokeSwimmers = new ArrayList<>();
+
 
     //SETTERS---------
 
