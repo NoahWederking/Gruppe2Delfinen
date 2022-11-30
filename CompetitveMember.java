@@ -8,7 +8,9 @@ public class CompetitveMember extends Member{
     private double bestTime;
     private int latestPosition;
 
-    ArrayList<CompetitveMember> crawlSwimmers = new ArrayList<>();
+    ArrayList<CompetitveMember> competitiveSwimmersUnder18 = new ArrayList<>();
+    ArrayList<CompetitveMember> competitiveSwimmersOver18 = new ArrayList<>();
+    ArrayList<CompetitveMember> crawl = new ArrayList<>();
     ArrayList<CompetitveMember> breaststrokeSwimmers = new ArrayList<>();
 
     public CompetitveMember(String name, int age, String swimStyle, double bestTime, int latestPosition){
@@ -16,6 +18,9 @@ public class CompetitveMember extends Member{
         setSwimStyle(swimStyle);
         setBestTime(bestTime);
         setLatestPosition(latestPosition);
+    }
+    public CompetitveMember(){
+
     }
 
 
