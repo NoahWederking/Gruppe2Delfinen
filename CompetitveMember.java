@@ -47,13 +47,7 @@ public class CompetitveMember extends Member implements CreateMember{
         return latestPosition;
     }
 
-
-
-
-
-
-
-    public void checkAge(){
+    public void createMember(){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Please insert new member name: ");
@@ -67,6 +61,11 @@ public class CompetitveMember extends Member implements CreateMember{
 
         System.out.println("Please select swimstyle");
         checkAge();
+
+    }
+
+    public void checkAge(){
+
     }
 
     @Override

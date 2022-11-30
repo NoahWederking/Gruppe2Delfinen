@@ -4,6 +4,7 @@ public class Chairman {
     private boolean isRunning;
 
     //Instances
+    CompetitveMember newCompetitiveSwimmer;
     Member member = new Member();
     Menu chairmanMenu = new Menu("====Chairman Menu====", "Please choose: ", new String[]
             {"1. Create new member", "2. Create new competitive member", "3. View member list",
@@ -16,7 +17,7 @@ public class Chairman {
 
             switch (choice) {
                 case 1 -> member.createMember();
-                case 2 -> System.out.println();
+                case 2 -> newCompetitiveSwimmer.createMember();
                 case 3 -> member.printList();
                 case 4 -> member.makePassiveMember();
                 case 9 -> isRunning = false;
