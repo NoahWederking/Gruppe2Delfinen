@@ -14,7 +14,7 @@ public class Cashier {
         do {
             switch (choice) {
                 case 1 -> member.viewMembershipState();
-                case 2 -> System.out.println("Change state");
+                case 2 -> System.out.println("Change state"); //TODO NTH
                 case 9 -> {System.out.println("Quit"); isRunning = false;}
                 default -> System.out.println("Invalid input");
             }

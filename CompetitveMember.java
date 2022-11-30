@@ -1,14 +1,12 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class CompetitveMember extends Member implements CreateMember{
+public class CompetitveMember extends Member{
 
 
     //Attributes-----------
     private String swimStyle;
     private double bestTime;
     private int latestPosition;
-    //Instances
 
     ArrayList<CompetitveMember> competitiveSwimmersUnder18 = new ArrayList<>();
     ArrayList<CompetitveMember> competitiveSwimmersOver18 = new ArrayList<>();
@@ -21,9 +19,6 @@ public class CompetitveMember extends Member implements CreateMember{
         setBestTime(bestTime);
         setLatestPosition(latestPosition);
     }
-
-
-
 
     //SETTERS---------
     public void setSwimStyle(String swimStyle){
@@ -47,25 +42,14 @@ public class CompetitveMember extends Member implements CreateMember{
         return latestPosition;
     }
 
-    public void createMember(){
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Please insert new member name: ");
-        String name = scanner.nextLine();
-        setName(name);
 
-        System.out.println("Please insert new member age: ");
-        int age = scanner.nextInt();
-        scanner.nextLine();
-        setAge(age);
-
-        System.out.println("Please select swimstyle");
-        checkAge();
-
-    }
-
-    public void checkAge(){
-
+    public void printCompMem(){
+        System.out.println(getName());
+        System.out.println(getAge());
+        System.out.println(getSwimStyle());
+        System.out.println(getBestTime());
+        System.out.println(getLatestPosition());
     }
 
     @Override
