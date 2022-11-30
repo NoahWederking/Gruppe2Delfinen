@@ -1,6 +1,8 @@
 public class Main {
     public void run() {
 
+        //TODO FIX CREATECOMPETETIVEMEMBER, FIX VIEWMEMBERSHIP STATE, FIX PASSIVEMEMBERSHIP
+
         /*CompetitveMember cm = new CompetitveMember("Noah",2,"Crawl",4.5,3);
         System.out.println(cm);
         cm.printCompMem();*/

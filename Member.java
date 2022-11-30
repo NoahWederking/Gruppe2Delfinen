@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Member implements CreateMember{
+public class Member {
 
     // Lavet af Philip, Oliver og Noah
 
@@ -20,7 +20,7 @@ public class Member implements CreateMember{
     }
 
     //Instances
-    CompetitveMember competitveMember;
+    CompetitveMember competitveMember = new CompetitveMember();
     ArrayList<Member> juniorSwimmers = new ArrayList<>();
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
