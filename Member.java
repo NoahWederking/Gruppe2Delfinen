@@ -32,6 +32,11 @@ public class Member {
                     "4. Competitive swimmers over 18." + "\n" +
                     "5. Competitive swimmers under 18."});
 
+    Menu memberPrices = new Menu("PRICE LISTS: ", "Please choose: ", new String[]{
+            "1. Junior swimmers." + "\n" +
+                    "2. Senior swimmers." + "\n" +
+                    "3. Adult swimmers."});
+
     //Setters
     public void setName(String name) {
         this.name = name;
@@ -133,10 +138,10 @@ public class Member {
                 passiveMembers(scanner, adultSwimmers);
             }
             case 4 -> {
-                passiveCompetetiveMember(scanner,competitveMember.competitiveSwimmersOver18);
+                passiveCompetetiveMember(scanner, competitveMember.competitiveSwimmersOver18);
             }
             case 5 -> {
-                passiveCompetetiveMember(scanner,competitveMember.competitiveSwimmersUnder18);
+                passiveCompetetiveMember(scanner, competitveMember.competitiveSwimmersUnder18);
             }
             default -> {
                 System.out.println("Invalid input.");
@@ -167,34 +172,28 @@ public class Member {
     }
 
     public void viewMembershipState() {
-        memberLists.printMenu();
-        int chooseList = memberLists.readChoice();
+        memberPrices.printMenu();
+        int chooseList = memberPrices .readChoice();
 
         switch (chooseList) {
             case 1 -> {
-                for (int i = 0; i < juniorSwimmers.size(); i++) {
-                    System.out.println(juniorSwimmers.get(i));
-                    System.out.print(" Price: 1000 DKK.");
+                for (Member member : juniorSwimmers) {
+                    System.out.println(member);
+                    System.out.print(" Price: 500 DKK.");
                 }
             }
             case 2 -> {
-                for (int i = 0; i < seniorSwimmers.size(); i++) {
-                    System.out.println(seniorSwimmers.get(i));
+                for (Member member : seniorSwimmers) {
+                    System.out.println(member);
                     System.out.print(" Price: 1200 DKK.");
                 }
             }
             case 3 -> {
-                for (int i = 0; i < adultSwimmers.size(); i++) {
-                    System.out.println(adultSwimmers.get(i));
+                for (Member member : adultSwimmers) {
+                    System.out.println(member);
                     System.out.print(" Price: 1600 DKK.");
                 }
             }
-           case 4 -> {
-               for (int i = 0; i <passiveSwimmers.size() ; i++) {
-                   System.out.println(passiveSwimmers.get(i));
-                   System.out.print(" Price: 500 DKK.");
-               }
-           }
             default -> {
                 System.out.println("Invalid input.");
                 memberLists.readChoice();

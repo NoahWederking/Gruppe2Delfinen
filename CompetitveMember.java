@@ -20,7 +20,6 @@ public class CompetitveMember extends Member{
         setLatestPosition(latestPosition);
     }
 
-
     //SETTERS---------
     public void setSwimStyle(String swimStyle){
         this.swimStyle = swimStyle;
