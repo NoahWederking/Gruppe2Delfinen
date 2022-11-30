@@ -1,7 +1,7 @@
 public class Main {
     public void run() {
 
-        /*CompetitveMember cm = new CompetitveMember("Noah",2,"Crawl",4.5,3);
+        /*CompetitiveMember cm = new CompetitiveMember("Noah",2,"Crawl",4.5,3);
         System.out.println(cm);
         cm.printCompMem();*/
 
@@ -9,9 +9,9 @@ public class Main {
         boolean isRunning = true;
 
         //Instances
-        Member member = new Member();
         Menu generalMenu = new Menu("=====Dolphin swimmers menu=====", "Please choose user: ",
                 new String[]{"1. Trainer", "2. Cashier", "3. Chairman", "9. Quit"});
+        Member member = new Member();
         Trainer trainer = new Trainer(member);
         Chairman chairman = new Chairman(member);
         Cashier cashier = new Cashier(member);

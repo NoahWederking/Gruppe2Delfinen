@@ -18,7 +18,7 @@ public class Member {
     }
 
     //Instances
-  /*  CompetitveMember competitveMember = new CompetitveMember();*/
+    CompetitiveMember competitiveMember = new CompetitiveMember();
     ArrayList<Member> juniorSwimmers = new ArrayList<>();
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
@@ -104,14 +104,14 @@ public class Member {
                 }
             }
             case 4 -> {
-               /* for (Member member : competitveMember.competitiveSwimmersOver18) {
+                for (CompetitiveMember member : competitiveMember.competitiveSwimmersOver18) {
                     System.out.println(member);
-                }*/
+                }
             }
             case 5 -> {
-               /* for (Member member : competitveMember.competitiveSwimmersUnder18) {
+                for (CompetitiveMember member : competitiveMember.competitiveSwimmersUnder18) {
                     System.out.println(member);
-                }*/
+                }
             }
             default -> {
                 System.out.println("Invalid input.");
@@ -126,21 +126,16 @@ public class Member {
         int chooseList = memberLists.readChoice();
 
         switch (chooseList) {
-            case 1 -> {
-                passiveMembers(scanner, juniorSwimmers);
-            }
-            case 2 -> {
-                passiveMembers(scanner, seniorSwimmers);
-            }
-            case 3 -> {
-                passiveMembers(scanner, adultSwimmers);
-            }
-            case 4 -> {
-              /*  passiveCompetetiveMember(scanner, competitveMember.competitiveSwimmersOver18);*/
-            }
-            case 5 -> {
-                /*passiveCompetetiveMember(scanner, competitveMember.competitiveSwimmersUnder18);*/
-            }
+            case 1 -> passiveMembers(scanner, juniorSwimmers);
+
+            case 2 -> passiveMembers(scanner, seniorSwimmers);
+
+            case 3 -> passiveMembers(scanner, adultSwimmers);
+
+            case 4 -> competitiveMember.passiveCompetitiveMember(scanner, competitiveMember.competitiveSwimmersOver18);
+
+            case 5 -> competitiveMember.passiveCompetitiveMember(scanner, competitiveMember.competitiveSwimmersUnder18);
+
             default -> {
                 System.out.println("Invalid input.");
                 memberLists.readChoice();
@@ -157,16 +152,6 @@ public class Member {
             passiveSwimmers.add(juniorSwimmers.get(index));
             juniorSwimmers.remove(index);
 
-        }
-    }
-
-    private void passiveCompetetiveMember(Scanner scanner, ArrayList<CompetitveMember> swimmers) {
-        for (int i = 0; i < swimmers.size(); i++) {
-            System.out.println(swimmers.get(i));
-            System.out.println("Please select the index of which member to make passive.");
-            int index = scanner.nextInt();
-            swimmers.remove(index);
-            passiveSwimmers.add(swimmers.get(index));
         }
     }
 
@@ -196,7 +181,6 @@ public class Member {
             }
         }
     }
-
 
     @Override
     public String toString() {

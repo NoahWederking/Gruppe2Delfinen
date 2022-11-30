@@ -6,7 +6,7 @@ public class Chairman {
     private final Member member;
 
     //Instances
-    CompetitveMember newCompetitiveSwimmer;
+    CompetitiveMember newCompetitiveSwimmer;
     Menu chairmanMenu = new Menu("====Chairman Menu====", "Please choose: ", new String[]
             {"1. Create new member", "2. Create new competitive member", "3. View member list",
                     "4. Change membership status", "9. To go back"});
@@ -24,13 +24,12 @@ public class Chairman {
 
             switch (choice) {
                 case 1 -> member.createMember();
-                case 2 -> newCompetitiveSwimmer.createMember();
+                case 2 -> newCompetitiveSwimmer.competitiveCreatMember();
                 case 3 -> member.printList();
                 case 4 -> member.makePassiveMember();
                 case 9 -> isRunning = false;
-                default -> {
-                    System.out.println("Invalid input.");
-                }
+                default -> System.out.println("Invalid input.");
+
             }
         } while (isRunning);
     }
