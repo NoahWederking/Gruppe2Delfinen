@@ -2,7 +2,12 @@ public class Trainer {
 
     // Lavet af Oliver, Noah og Philip
 
+    //Attributes
+    boolean isRunning;
+    boolean isBack;
 
+    //Instances
+    Member member = new Member();
     Menu trainerMenu = new Menu("====Trainer Menu====", "Please choose an action", new String[]
             {"1. View Competitive Team", "2. Register swim results", "3. View Top five swimmers"});
 
@@ -10,14 +15,12 @@ public class Trainer {
             new String[]{"1. Junior Competitive", "2. Adult Competitive", "3. Adult Swimmers", "4. Senior Swimmers",
                     "5. Junior Swimmers", "9. Quit"});
 
-    boolean isRunning;
-    boolean isBack;
     public void trainerMenu() {
         trainerMenu.printMenu();
         int choice = trainerMenu.readChoice();
         do {
             switch (choice) {
-                case 1 -> viewSwimTeams();
+                case 1 -> member.printList();
                 case 2 -> System.out.println("Register swim results");
                 case 3 -> System.out.println("Top 5");
                 case 9 -> {System.out.println("Quit"); isRunning = false;}
@@ -26,7 +29,7 @@ public class Trainer {
         }while (isRunning);
     }
 
-    public void viewSwimTeams(){
+   /* public void viewSwimTeams(){
         swimTeams.printMenu();
         int choice = swimTeams.readChoice();
         do{
@@ -40,6 +43,6 @@ public class Trainer {
                 default -> System.out.println("invalid input");
             }
         } while(isBack);
-    }
+    }*/
 
 }

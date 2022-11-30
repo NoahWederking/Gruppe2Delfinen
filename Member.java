@@ -120,7 +120,7 @@ public class Member {
         }
     }
 
-    public void membershipState() {
+    public void makePassiveMember() {
         Scanner scanner = new Scanner(System.in);
         memberLists.printMenu();
         int chooseList = memberLists.readChoice();
@@ -157,6 +157,10 @@ public class Member {
             juniorSwimmers.remove(index);
             passiveSwimmers.add(juniorSwimmers.get(index));
         }
+    }
+
+    public void viewMembershipState() {
+
     }
 
     @Override
