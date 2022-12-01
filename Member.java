@@ -26,12 +26,10 @@ public class Member {
         setLatestPosition(latestPosition);
     }
 
-    public Member() {
-
-    }
+    public Member() {}
 
     //Instances
-    CompetitiveMember competitiveMember = new CompetitiveMember();
+
     ArrayList<Member> juniorSwimmers = new ArrayList<>();
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
@@ -114,6 +112,7 @@ public class Member {
         scanner.nextLine();
         setAge(age);
     }
+
     public void createCompetitiveMember(){
         Scanner scanner = new Scanner(System.in);
 
@@ -133,7 +132,6 @@ public class Member {
 
         System.out.println("Please enter the members latest position: ");
         latestPosition = scanner.nextInt();
-
     }
 
     public void checkAge() {
@@ -205,9 +203,9 @@ public class Member {
 
             case 3 -> passiveMembers(scanner, adultSwimmers);
 
-            case 4 -> competitiveMember.passiveCompetitiveMember(scanner, competitiveMember.competitiveSwimmersOver18);
+            case 4 -> passiveMembers(scanner, adultCompetitiveSwimmers);
 
-            case 5 -> competitiveMember.passiveCompetitiveMember(scanner, competitiveMember.competitiveSwimmersUnder18);
+            case 5 -> passiveMembers(scanner, juniorCompetitiveSwimmers);
 
             default -> {
                 System.out.println("Invalid input.");
