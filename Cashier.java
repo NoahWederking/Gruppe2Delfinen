@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class Cashier {
 
     //Attributes
@@ -14,7 +16,7 @@ public class Cashier {
     }
 
     //Methods
-    public void cashierMenu() {
+    public void cashierMenu() throws IOException {
         cashierMenu.printMenu();
         int choice = cashierMenu.readChoice();
         do {

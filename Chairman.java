@@ -1,3 +1,4 @@
+import java.io.IOException;
 
 public class Chairman {
 
@@ -6,18 +7,18 @@ public class Chairman {
     private final Member member;
 
     //Instances
-    CompetitiveMember newCompetitiveSwimmer;
+    CompetitiveMember newCompetitiveSwimmer = new CompetitiveMember();
     Menu chairmanMenu = new Menu("====Chairman Menu====", "Please choose: ", new String[]
             {"1. Create new member", "2. View member list",
                     "3. Change membership status", "9. To go back"});
 
     //Constructors
-    public Chairman(Member member) {
+    public Chairman(Member member) throws IOException {
         this.member = member;
     }
 
     //Methods
-    public void chairmanMenu() {
+    public void chairmanMenu() throws IOException {
         do {
             chairmanMenu.printMenu();
             int choice = chairmanMenu.readChoice();

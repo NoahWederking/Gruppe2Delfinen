@@ -1,20 +1,26 @@
+import java.io.IOException;
+
 public class Main {
-    public void run() {
 
-        /*CompetitiveMember cm = new CompetitiveMember("Noah",2,"Crawl",4.5,3);
-        System.out.println(cm);
-        cm.printCompMem();*/
+    //Attributes
+    private boolean isRunning = true;
 
-        //Attributes
-        boolean isRunning = true;
+    //Instances
+    Menu generalMenu = new Menu("=====Dolphin swimmers menu=====", "Please choose user: ",
+            new String[]{"1. Trainer", "2. Cashier", "3. Chairman", "9. Quit"});
+    Log log = new Log();
+    Member member = new Member(log);
+    Trainer trainer = new Trainer(member);
+    Chairman chairman = new Chairman(member);
+    Cashier cashier = new Cashier(member);
 
-        //Instances
-        Menu generalMenu = new Menu("=====Dolphin swimmers menu=====", "Please choose user: ",
-                new String[]{"1. Trainer", "2. Cashier", "3. Chairman", "9. Quit"});
-        Member member = new Member();
-        Trainer trainer = new Trainer(member);
-        Chairman chairman = new Chairman(member);
-        Cashier cashier = new Cashier(member);
+    //Constructors
+    public Main() throws IOException {
+
+    }
+    public void run() throws IOException {
+
+        log.writeLine("\nStarting program");
 
         do {
             generalMenu.printMenu();
@@ -26,6 +32,8 @@ public class Main {
                 case 3 -> chairman.chairmanMenu();
                 case 9 -> {
                     System.out.println("Quit");
+                    log.writeLine("\nClosing program");
+                    log.closeFile();
                     isRunning = false;
                 }
                 default -> {
@@ -36,8 +44,7 @@ public class Main {
         } while (isRunning);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new Main().run();
     }
-
 }

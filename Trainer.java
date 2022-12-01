@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class Trainer {
 
     //Attributes
@@ -25,7 +27,7 @@ public class Trainer {
     public Trainer(){}
 
     //Methods
-    public void trainerMenu() {
+    public void trainerMenu() throws IOException {
         trainerMenu.printMenu();
         int choice = trainerMenu.readChoice();
         do {
