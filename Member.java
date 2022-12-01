@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Member implements CreateMember{
-
-    // Lavet af Philip, Oliver og Noah
+public class Member {
 
     //Attributes
     private int age;
@@ -20,7 +18,7 @@ public class Member implements CreateMember{
     }
 
     //Instances
-    CompetitveMember competitveMember;
+    CompetitiveMember competitiveMember = new CompetitiveMember();
     ArrayList<Member> juniorSwimmers = new ArrayList<>();
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
@@ -106,12 +104,12 @@ public class Member implements CreateMember{
                 }
             }
             case 4 -> {
-                for (Member member : competitveMember.competitiveSwimmersOver18) {
+                for (CompetitiveMember member : competitiveMember.competitiveSwimmersOver18) {
                     System.out.println(member);
                 }
             }
             case 5 -> {
-                for (Member member : competitveMember.competitiveSwimmersUnder18) {
+                for (CompetitiveMember member : competitiveMember.competitiveSwimmersUnder18) {
                     System.out.println(member);
                 }
             }
@@ -128,21 +126,16 @@ public class Member implements CreateMember{
         int chooseList = memberLists.readChoice();
 
         switch (chooseList) {
-            case 1 -> {
-                passiveMembers(scanner, juniorSwimmers);
-            }
-            case 2 -> {
-                passiveMembers(scanner, seniorSwimmers);
-            }
-            case 3 -> {
-                passiveMembers(scanner, adultSwimmers);
-            }
-            case 4 -> {
-                passiveCompetetiveMember(scanner, competitveMember.competitiveSwimmersOver18);
-            }
-            case 5 -> {
-                passiveCompetetiveMember(scanner, competitveMember.competitiveSwimmersUnder18);
-            }
+            case 1 -> passiveMembers(scanner, juniorSwimmers);
+
+            case 2 -> passiveMembers(scanner, seniorSwimmers);
+
+            case 3 -> passiveMembers(scanner, adultSwimmers);
+
+            case 4 -> competitiveMember.passiveCompetitiveMember(scanner, competitiveMember.competitiveSwimmersOver18);
+
+            case 5 -> competitiveMember.passiveCompetitiveMember(scanner, competitiveMember.competitiveSwimmersUnder18);
+
             default -> {
                 System.out.println("Invalid input.");
                 memberLists.readChoice();
@@ -156,42 +149,30 @@ public class Member implements CreateMember{
             System.out.println(juniorSwimmers.get(i));
             System.out.println("Please select the index of which member to make passive.");
             int index = scanner.nextInt();
-            juniorSwimmers.remove(index);
             passiveSwimmers.add(juniorSwimmers.get(index));
-        }
-    }
+            juniorSwimmers.remove(index);
 
-    private void passiveCompetetiveMember(Scanner scanner, ArrayList<CompetitveMember> juniorSwimmers) {
-        for (int i = 0; i < juniorSwimmers.size(); i++) {
-            System.out.println(juniorSwimmers.get(i));
-            System.out.println("Please select the index of which member to make passive.");
-            int index = scanner.nextInt();
-            juniorSwimmers.remove(index);
-            passiveSwimmers.add(juniorSwimmers.get(index));
         }
     }
 
     public void viewMembershipState() {
         memberPrices.printMenu();
-        int chooseList = memberPrices .readChoice();
+        int chooseList = memberPrices.readChoice();
 
         switch (chooseList) {
             case 1 -> {
                 for (Member member : juniorSwimmers) {
-                    System.out.println(member);
-                    System.out.print(" Price: 500 DKK.");
+                    System.out.println(member + " Price: 500 DKK.");
                 }
             }
             case 2 -> {
                 for (Member member : seniorSwimmers) {
-                    System.out.println(member);
-                    System.out.print(" Price: 1200 DKK.");
+                    System.out.println(member + " Price: 1200 DKK.");
                 }
             }
             case 3 -> {
                 for (Member member : adultSwimmers) {
-                    System.out.println(member);
-                    System.out.print(" Price: 1600 DKK.");
+                    System.out.println(member + " Price: 1600 DKK.");
                 }
             }
             default -> {
@@ -200,7 +181,6 @@ public class Member implements CreateMember{
             }
         }
     }
-
 
     @Override
     public String toString() {

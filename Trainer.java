@@ -1,20 +1,24 @@
 public class Trainer {
 
-    // Lavet af Oliver, Noah og Philip
-
     //Attributes
-    boolean isRunning;
-    boolean isBack;
+    private boolean isRunning;
+    private boolean isBack;
+    private final Member member;
 
     //Instances
-    Member member = new Member();
-    Menu trainerMenu = new Menu("====Trainer Menu====", "Please choose an action", new String[]
-            {"1. View Competitive Team", "2. Register swim results", "3. View Top five swimmers"});
+    Menu trainerMenu = new Menu("====Trainer Menu====", "Please choose an action: ", new String[]
+            {"1. View Competitive Team", "2. Register swim results", "3. View Top five swimmers", "9. To go back."});
 
-    Menu swimTeams = new Menu("====Swim Teams====", "Please choose a team",
+    Menu swimTeams = new Menu("====Swim Teams====", "Please choose a team: ",
             new String[]{"1. Junior Competitive", "2. Adult Competitive", "3. Adult Swimmers", "4. Senior Swimmers",
-                    "5. Junior Swimmers", "9. Quit"});
+                    "5. Junior Swimmers", "9. To go back."});
 
+    //Constructors
+    public Trainer(Member member) {
+        this.member = member;
+    }
+
+    //Methods
     public void trainerMenu() {
         trainerMenu.printMenu();
         int choice = trainerMenu.readChoice();
@@ -23,10 +27,13 @@ public class Trainer {
                 case 1 -> member.printList();
                 case 2 -> System.out.println("Register swim results");
                 case 3 -> System.out.println("Top 5");
-                case 9 -> {System.out.println("Quit"); isRunning = false;}
+                case 9 -> {
+                    System.out.println("Quit");
+                    isRunning = false;
+                }
                 default -> System.out.println("Invalid input");
             }
-        }while (isRunning);
+        } while (isRunning);
     }
 
    /* public void viewSwimTeams(){
@@ -34,7 +41,7 @@ public class Trainer {
         int choice = swimTeams.readChoice();
         do{
             switch (choice){
-                case 1 -> System.out.println("Print ARRAY FOR JUNOIR TEAM");
+                case 1 -> System.out.println("Print ARRAY FOR JUNIOR TEAM");
                 case 2 -> System.out.println("Print ARRAY FOR adult TEAM");
                 case 3 -> System.out.println("Print ARRAY for adultSwimmers");
                 case 4 -> System.out.println("Print array for senior swimmer");
