@@ -7,10 +7,23 @@ public class Member {
     private int age;
     private String name;
 
+    private String swimStyle;
+
+    private double bestTime;
+
+    private int latestPosition;
+
     //Constructors
     public Member(String name, int age) {
         setName(name);
         setAge(age);
+    }
+    public Member(String name, int age, String swimStyle, double bestTime, int latestPosition){
+        setName(name);
+        setAge(age);
+        setSwimStyle(swimStyle);
+        setBestTime(bestTime);
+        setLatestPosition(latestPosition);
     }
 
     public Member() {
@@ -23,6 +36,12 @@ public class Member {
     ArrayList<Member> seniorSwimmers = new ArrayList<>();
     ArrayList<Member> adultSwimmers = new ArrayList<>();
     ArrayList<Member> passiveSwimmers = new ArrayList<>();
+    ArrayList<Member> juniorCompetitiveSwimmers = new ArrayList<>();
+    ArrayList<Member> adultCompetitiveSwimmers = new ArrayList<>();
+    Trainer trainer = new Trainer();
+
+
+
     Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", new String[]{
             "1. Junior swimmers." + "\n" +
                     "2. Senior swimmers." + "\n" +
@@ -43,6 +62,17 @@ public class Member {
     public void setAge(int age) {
         this.age = age;
     }
+    public void setSwimStyle(String swimStyle) {
+        this.swimStyle = swimStyle;
+    }
+
+    public void setBestTime(double bestTime) {
+        this.bestTime = bestTime;
+    }
+
+    public void setLatestPosition(int latestPosition) {
+        this.latestPosition = latestPosition;
+    }
 
 
     //Getters
@@ -53,10 +83,26 @@ public class Member {
     public int getAge() {
         return age;
     }
+    public String getSwimStyle() {
+        return swimStyle;
+    }
+
+    public double getBestTime() {
+        return bestTime;
+    }
+
+    public int getLatestPosition() {
+        return latestPosition;
+    }
 
 
     //Methods
-    public void createMember() {
+
+    public void createMember(){
+        getInputMember();
+        checkAge();
+    }
+    public void getInputMember() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Please insert new member name: ");
@@ -67,7 +113,27 @@ public class Member {
         age = scanner.nextInt();
         scanner.nextLine();
         setAge(age);
-        checkAge();
+    }
+    public void createCompetitiveMember(){
+        Scanner scanner = new Scanner(System.in);
+
+        printList();
+        System.out.println("Please select a member to make competitive: ");
+        int index = scanner.nextInt();
+        scanner.nextLine();
+
+        name = getName();
+        age = getAge();
+
+        System.out.println("Please enter swim style");
+        trainer.swimDisciplinesMenu();
+
+        System.out.println("Please enter the members best time: ");
+        bestTime = scanner.nextDouble();
+
+        System.out.println("Please enter the members latest position: ");
+        latestPosition = scanner.nextInt();
+
     }
 
     public void checkAge() {
@@ -79,6 +145,13 @@ public class Member {
 
         } else if (age > 18 && age < 60) {
             adultSwimmers.add(new Member(getName(), getAge()));
+        }
+    }
+    public void checkCompetitiveAge(){
+        if (age <18){
+            juniorCompetitiveSwimmers.add(new Member(getName(), getAge()));
+        } else if (age > 18) {
+            adultCompetitiveSwimmers.add(new Member(getName(), getAge()));
         }
     }
 
@@ -104,12 +177,12 @@ public class Member {
                 }
             }
             case 4 -> {
-                for (CompetitiveMember member : competitiveMember.competitiveSwimmersOver18) {
+                for (Member member : adultCompetitiveSwimmers) {
                     System.out.println(member);
                 }
             }
             case 5 -> {
-                for (CompetitiveMember member : competitiveMember.competitiveSwimmersUnder18) {
+                for (Member member : juniorCompetitiveSwimmers) {
                     System.out.println(member);
                 }
             }

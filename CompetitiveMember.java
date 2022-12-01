@@ -4,6 +4,8 @@ import java.util.Scanner;
 public class CompetitiveMember {
 
     //Attributes-----------
+    private String name;
+    private int age;
     private String swimStyle;
     private double bestTime;
     private int latestPosition;
@@ -25,6 +27,10 @@ public class CompetitiveMember {
     public CompetitiveMember() {
 
     }
+    public CompetitiveMember(String name, int age){
+        setName(name);
+        setAge(age);
+    }
     //SETTERS---------
     public void setSwimStyle(String swimStyle) {
         this.swimStyle = swimStyle;
@@ -36,6 +42,12 @@ public class CompetitiveMember {
 
     public void setLatestPosition(int latestPosition) {
         this.latestPosition = latestPosition;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setAge(int age){
+        this.age = age;
     }
 
     //GETTERS----------
@@ -49,6 +61,12 @@ public class CompetitiveMember {
 
     public int getLatestPosition() {
         return latestPosition;
+    }
+    public String getName(){
+        return name;
+    }
+    public int getAge(){
+        return age;
     }
 
     //Methods
