@@ -1,9 +1,16 @@
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
 
     //Attributes
     private boolean isRunning = true;
+
+    //TIME
+    LocalDateTime time = LocalDateTime.now();
+    DateTimeFormatter myFormattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String formattedDate = time.format(myFormattedDate);
 
     //Instances
     Menu generalMenu = new Menu("=====Dolphin swimmers menu=====", "Please choose user: ",
@@ -15,12 +22,15 @@ public class Main {
     Cashier cashier = new Cashier(member);
 
     //Constructors
+    public Main(String formattedDate) throws IOException {
+        this.formattedDate = formattedDate;
+    }
     public Main() throws IOException {
 
     }
     public void run() throws IOException {
 
-        log.writeLine("\nStarting program");
+        log.writeLine("\n" + formattedDate + " Starting program");
 
         do {
             generalMenu.printMenu();
@@ -32,7 +42,7 @@ public class Main {
                 case 3 -> chairman.chairmanMenu();
                 case 9 -> {
                     System.out.println("Quit");
-                    log.writeLine("\nClosing program");
+                    log.writeLine("\n" + formattedDate + " Closing program");
                     log.closeFile();
                     isRunning = false;
                 }

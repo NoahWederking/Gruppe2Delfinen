@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,8 +18,13 @@ public class Member {
     private final int passivePrice = 500;
     private Log log;
 
+    //TIME
+    LocalDateTime time = LocalDateTime.now();
+    DateTimeFormatter myFormattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String formattedDate = time.format(myFormattedDate);
+
     //Constructors
-    public Member(Log log) {
+    public Member(Log log) throws IOException {
         this.log = log;
     }
     public Member(String name, int age) throws IOException {
@@ -95,7 +102,7 @@ public class Member {
 
     //Methods
     public void createMember() throws IOException {
-        log.writeLine("\nCREATING MEMBER");
+        log.writeLine("\n" + formattedDate + " CREATING MEMBER");
         getInputMember();
         checkAge();
     }
@@ -108,13 +115,13 @@ public class Member {
 
         System.out.println("Please insert new member age: ");
         age = scanner.nextInt();
-        log.writeLine("\nMEMBER INFO: NAME: " + name + " AGE: " + age);
+        log.writeLine("\n" + formattedDate + " MEMBER INFO: NAME: " + name + " AGE: " + age);
         scanner.nextLine();
         setAge(age);
     }
 
     public void createCompetitiveMember() throws IOException {
-        log.writeLine("\nCREATING COMPETITIVE MEMBER");
+        log.writeLine("\n" + formattedDate + " CREATING COMPETITIVE MEMBER");
         Scanner scanner = new Scanner(System.in);
         printList();
         System.out.println("Please select a member to make competitive: ");
@@ -155,7 +162,7 @@ public class Member {
 
 
     public void printList() throws IOException {
-        log.writeLine("\nVIEWING MEMBER LIST");
+        log.writeLine("\n" + formattedDate + " VIEWING MEMBER LIST");
         memberLists.printMenu();
         int chooseList = memberLists.readChoice();
 
@@ -164,31 +171,31 @@ public class Member {
                 for (Member member : juniorSwimmers) {
                     System.out.println(member);
                 }
-                log.writeLine("\nVIEWING JUNIOR SWIMMERS");
+                log.writeLine("\n" + formattedDate + " VIEWING JUNIOR SWIMMERS");
             }
             case 2 -> {
                 for (Member member : seniorSwimmers) {
                     System.out.println(member);
                 }
-                log.writeLine("\nVIEWING SENIOR SWIMMERS");
+                log.writeLine("\n" + formattedDate + " VIEWING SENIOR SWIMMERS");
             }
             case 3 -> {
                 for (Member member : adultSwimmers) {
                     System.out.println(member);
                 }
-                log.writeLine("\nVIEWING ADULT SWIMMERS");
+                log.writeLine("\n" + formattedDate + " VIEWING ADULT SWIMMERS");
             }
             case 4 -> {
                 for (Member member : adultCompetitiveSwimmers) {
                     System.out.println(member);
                 }
-                log.writeLine("\nVIEWING ADULT COMPETITIVE SWIMMERS");
+                log.writeLine("\n" + formattedDate + " VIEWING ADULT COMPETITIVE SWIMMERS");
             }
             case 5 -> {
                 for (Member member : juniorCompetitiveSwimmers) {
                     System.out.println(member);
                 }
-                log.writeLine("\nVIEWING JUNIOR COMPETITIVE SWIMMERS");
+                log.writeLine("\n" + formattedDate + " VIEWING JUNIOR COMPETITIVE SWIMMERS");
             }
             default -> {
                 System.out.println("Invalid input.");
@@ -198,7 +205,7 @@ public class Member {
     }
 
     public void makePassiveMember() throws IOException {
-        log.writeLine("\nMAKING A MEMBER PASSIVE");
+        log.writeLine("\n" + formattedDate + " MAKING A MEMBER PASSIVE");
         Scanner scanner = new Scanner(System.in);
         memberLists.printMenu();
         int chooseList = memberLists.readChoice();
@@ -234,7 +241,7 @@ public class Member {
     }
 
     public void viewMembershipState() throws IOException {
-        log.writeLine("\nVIEWING MEMBERSHIP STATE");
+        log.writeLine("\n" + formattedDate + " VIEWING MEMBERSHIP STATE");
         memberPrices.printMenu();
         int chooseList = memberPrices.readChoice();
 
@@ -242,16 +249,19 @@ public class Member {
             case 1 -> {
                 for (Member member : juniorSwimmers) {
                     System.out.println(member + " Price: " + juniorPrice);
+                    log.writeLine("\n" + formattedDate + member + " Price: " + juniorPrice);
                 }
             }
             case 2 -> {
                 for (Member member : seniorSwimmers) {
                     System.out.println(member + " Price: " + seniorPrice);
+                    log.writeLine("\n" + formattedDate + member + " Price: " + seniorPrice);
                 }
             }
             case 3 -> {
                 for (Member member : adultSwimmers) {
                     System.out.println(member + " Price: " + adultPrice);
+                    log.writeLine("\n" + formattedDate + member + " Price: " + adultPrice);
                 }
             }
             default -> {
@@ -263,8 +273,6 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member: " + "\n" +
-                " Name: " + name +
-                " Age: " + age;
+        return " Member: " + "Name: " + name + " Age: " + age;
     }
 }
