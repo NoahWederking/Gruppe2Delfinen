@@ -8,7 +8,7 @@ public class Cashier {
 
     //Instances
     Menu cashierMenu = new Menu("====Cashier Menu====", "Please choose: ", new String[]
-            {"1. View member state", "2. Change member state", "9. To go back."});
+            {"1. View member state", "9. To go back."});
 
     //Constructors
     public Cashier(Member member) {
@@ -22,7 +22,6 @@ public class Cashier {
         do {
             switch (choice) {
                 case 1 -> member.viewMembershipState();
-                case 2 -> System.out.println("Change state"); //TODO NTH
                 case 9 -> {
                     System.out.println("Quit");
                     isRunning = false;
