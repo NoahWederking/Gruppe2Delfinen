@@ -48,10 +48,12 @@ public class Member {
                     "3. Adult swimmers." + "\n" +
                     "4. Competitive swimmers over 18." + "\n" +
                     "5. Competitive swimmers under 18."});
+
     Menu memberPrices = new Menu("PRICE LISTS: ", "Please choose: ", new String[]{
             "1. Junior swimmers." + "\n" +
                     "2. Senior swimmers." + "\n" +
                     "3. Adult swimmers."});
+
     Menu competitiveMemberList = new Menu("COMPETITIVE MEMBER LISTS:", "Please choose: ", new String[]{
             "1, Competitive members over 18." + "\n" + "2. Competitive members under 18"});
 
@@ -103,7 +105,6 @@ public class Member {
     public void createMember() throws IOException {
         log.writeLine("\n" + calender.formattedDate + " CREATING MEMBER");
         Scanner scanner = new Scanner(System.in);
-
         System.out.println("Please insert new member name: ");
         name = scanner.nextLine();
         setName(name);
@@ -113,12 +114,13 @@ public class Member {
         log.writeLine("\n" + calender.formattedDate + " MEMBER INFO: NAME: " + name + " AGE: " + age);
         scanner.nextLine();
         setAge(age);
+        checkAge();
     }
 
     public void createCompetitiveMember() throws IOException {
         log.writeLine("\n" + calender.formattedDate + " CREATING COMPETITIVE MEMBER");
         Scanner scanner = new Scanner(System.in);
-        printList();
+        //TODO Lav en switch til print Printlist til competitive med JUnior og adult swimmers
         System.out.println("Please select a member to make competitive: ");
         int index = scanner.nextInt();
         scanner.nextLine();
@@ -127,13 +129,18 @@ public class Member {
         age = getAge();
 
         System.out.println("Please enter swim style");
-        trainer.swimDisciplinesMenu();
+        trainer.swimDisciplinesMenu.printMenu();
+        trainer.swimDisciplinesMenu.readChoice();
 
         System.out.println("Please enter the members best time: ");
         bestTime = scanner.nextDouble();
+        setBestTime(bestTime);
 
         System.out.println("Please enter the members latest position: ");
         latestPosition = scanner.nextInt();
+        setLatestPosition(latestPosition);
+        trainer.makeMemberCompetitive();
+
     }
 
     public void checkAge() throws IOException {
@@ -155,6 +162,9 @@ public class Member {
             membersList.adultCompetitiveSwimmers.add(new Member(getName(), getAge()));
         }
     }
+
+
+    //TODO Lav en switch til print
 
 
     public void printList() throws IOException {

@@ -16,8 +16,16 @@ public class Trainer {
     Menu trainerMenu = new Menu("====Trainer Menu====", "Please choose an action: ", new String[]
             {"1. View Competitive Team", "2. Make member competitive", "3. Change swim results",
                     "4. View top 5 swimmers", "9. To go back."});
+
     Menu swimDisciplinesMenu = new Menu("====Swim Disciplines====", "Please select a discipline: "
             , new String[]{"1. Crawl", "2. Breast Stroke", "3. Butterfly"});
+
+    Menu competitiveMemberMenu = new Menu("====Competitive Members====", "Please select a team",
+            new String[]{"1. Junior swimmers", "2. Adult swimmers"});
+
+    Menu swimTeams = new Menu("====Swim Teams====", "Please choose a team: ",
+            new String[]{"1. Junior Competitive", "2. Adult Competitive", "3. Adult Swimmers", "4. Senior Swimmers",
+                    "5. Junior Swimmers", "9. To go back."});
 
 
     //Constructors
@@ -44,7 +52,7 @@ public class Trainer {
         } while (isRunning);
     }
 
-    public void swimDisciplinesMenu() {
+    public void swimDisciplines() {
         swimDisciplinesMenu.printMenu();
         int choice = swimDisciplinesMenu.readChoice();
         switch (choice) {
