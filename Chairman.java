@@ -44,13 +44,13 @@ public class Chairman {
     }
 
     //Methods
-    public void chairmanMenu() throws IOException {
+    public void chairmanMenu(Member member) throws IOException {
         do {
             chairmanMenu.printMenu();
             int choice = chairmanMenu.readChoice();
 
             switch (choice) {
-                case 1 -> createMember();
+                case 1 -> createMember(member);
                 case 2 -> printList();
                 case 3 -> makePassiveMember();
                 case 9 -> isRunning = false;
@@ -59,7 +59,7 @@ public class Chairman {
             }
         } while (isRunning);
     }
-    private void createMember() throws IOException {
+    private void createMember(Member member) throws IOException {
         log.writeLine("\n" + calender.formattedDate + " CREATING MEMBER");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please insert new member name: ");
@@ -71,18 +71,18 @@ public class Chairman {
         log.writeLine("\n" + calender.formattedDate + " MEMBER INFO: NAME: " + name + " AGE: " + age);
         scanner.nextLine();
         setAge(age);
-        checkAge();
+        checkAge(member);
     }
 
-    private void checkAge() throws IOException {
+    private void checkAge(Member member) {
         if (age < 18) {
-            MembersList.juniorSwimmers.add(new Member(getName(), getAge()));
+            MembersList.juniorSwimmers.add(new Member(member.getName(), member.getAge()));
 
         } else if (age > 60) {
-            MembersList.seniorSwimmers.add(new Member(getName(), getAge()));
+            MembersList.seniorSwimmers.add(new Member(member.getName(), member.getAge()));
 
         } else if (age > 18 && age < 60) {
-            MembersList.adultSwimmers.add(new Member(getName(), getAge()));
+            MembersList.adultSwimmers.add(new Member(member.getName(), member.getAge()));
         }
     }
 

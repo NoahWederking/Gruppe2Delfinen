@@ -71,7 +71,7 @@ public class Trainer {
     }
 
     //Methods
-    public void trainerMenu() throws IOException {
+    public void trainerMenu(Member member) throws IOException {
         trainerMenu.printMenu();
         int choice = trainerMenu.readChoice();
         do {
@@ -80,6 +80,7 @@ public class Trainer {
                 case 2 -> createCompetitiveMember();
                 case 3 -> changeSwimResults();
                 case 4 -> showTopFive();
+                case 5 -> printMembers(MembersList.adultCompetitiveSwimmers);
                 case 9 -> isRunning = false;
                 default -> System.out.println("Invalid input");
             }
@@ -152,24 +153,26 @@ public class Trainer {
     public void createCompetitiveMember() throws IOException {
         log.writeLine("\n" + calender.formattedDate + " CREATING COMPETITIVE MEMBER");
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please select a member to make competitive: ");
-        scanner.nextLine();
-
-        name = getName();
-        age = getAge();
-
-        System.out.println("Please enter swim style");
-        swimDisciplinesMenu.printMenu();
-        swimDisciplinesMenu.readChoice();
-
-        System.out.println("Please enter the members best time: ");
-        bestTime = scanner.nextDouble();
-        setBestTime(bestTime);
-
-        System.out.println("Please enter the members latest position: ");
-        latestPosition = scanner.nextInt();
-        setLatestPosition(latestPosition);
+        System.out.println("Please select a team");
         makeMemberCompetitive();
+
+//        System.out.println("Please select a member to make competitive: ");
+//        scanner.nextLine();
+//
+//        name = getName();
+//        age = getAge();
+//
+//        System.out.println("Please enter swim style");
+//        swimDisciplines();
+//
+//        System.out.println("Please enter the members best time: ");
+//        bestTime = scanner.nextDouble();
+//        setBestTime(bestTime);
+//
+//        System.out.println("Please enter the members latest position: ");
+//        latestPosition = scanner.nextInt();
+//        setLatestPosition(latestPosition);
+
 
     }
     public void printList() throws IOException {
@@ -209,8 +212,6 @@ public class Trainer {
         }
     }
 
-
-
     public void makeMemberCompetitive() throws IOException {
         log.writeLine("\n" + calender.formattedDate + " MAKE A MEMBER COMPETITIVE");
         Scanner scanner = new Scanner(System.in);
@@ -228,13 +229,14 @@ public class Trainer {
         System.out.println("You have now added member to a competitive team.");
     }
 
-    private void competitiveMembers(Scanner scanner, ArrayList<Member> standard) throws IOException {
-        for (int i = 0; i < standard.size(); i++) {
-            System.out.println(standard.get(i));
+    private void competitiveMembers(Scanner scanner, ArrayList<Member> members) {
+            printMembers(members);
             System.out.println("Please select the index of which member to make competitive.");
             int index = scanner.nextInt();
 
             if (getAge() < 18) {
+                members.get(index).setBestTime(bestTime);
+                members.get(index).setLatestPosition(latestPosition);
                 MembersList.juniorCompetitiveSwimmers.add(new Member(getName(), getAge(), getSwimStyle(),
                         getBestTime(), getLatestPosition()));
             } else if (getAge() > 18) {

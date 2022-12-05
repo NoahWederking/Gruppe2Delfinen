@@ -13,6 +13,7 @@ public class Main {
     Chairman chairman = new Chairman();
     Trainer trainer = new Trainer();
     Cashier cashier = new Cashier();
+    Member member = new Member();
 
     //Methods
     public Main() throws IOException {
@@ -28,9 +29,9 @@ public class Main {
             int choice = generalMenu.readChoice();
 
             switch (choice) {
-                case 1 -> trainer.trainerMenu();
+                case 1 -> trainer.trainerMenu(member);
                 case 2 -> cashier.cashierMenu();
-                case 3 -> chairman.chairmanMenu();
+                case 3 -> chairman.chairmanMenu(member);
                 case 9 -> {
                     System.out.println("Quit");
                     log.writeLine("\n" + calender.formattedDate + " Closing program");
