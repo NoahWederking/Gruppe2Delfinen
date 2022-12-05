@@ -9,8 +9,6 @@ public class Trainer {
     private boolean isRunning;
 
     //Instances
-    Menu competitiveMemberList = new Menu("COMPETITIVE MEMBER LISTS:", "Please choose: ", new String[]{
-            "1, Competitive members over 18." + "\n" + "2. Competitive members under 18"});
     Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", new String[]{
             "1. Junior swimmers." + "\n" +
                     "2. Senior swimmers." + "\n" +
@@ -51,7 +49,7 @@ public class Trainer {
     public void showTopFive(MembersList membersList, Calender calender, Log log) throws IOException {
         log.writeLine("VIEWING TOP 5 LIST");
         Scanner scanner = new Scanner(System.in);
-        competitiveMemberList.printMenu();
+        competitiveMemberMenu.printMenu();
         System.out.println("Please choose either adult or junior (1 , 2)");
         int answer = scanner.nextInt();
         if (answer == 1) {
@@ -72,8 +70,8 @@ public class Trainer {
         }
     }
     public void changeSwimResults(MembersList membersList) {
-        competitiveMemberList.printMenu();
-        int answer = competitiveMemberList.readChoice();
+        competitiveMemberMenu.printMenu();
+        int answer = competitiveMemberMenu.readChoice();
 
         switch (answer) {
             case 1 -> {
@@ -139,8 +137,8 @@ public class Trainer {
     }
     public void printList() throws IOException {
         log.writeLine("\n" + calender.formattedDate + " VIEWING MEMBER LIST");
-        competitiveMemberList.printMenu();
-        int chooseList = competitiveMemberList.readChoice();
+        competitiveMemberMenu.printMenu();
+        int chooseList = competitiveMemberMenu.readChoice();
 
         switch (chooseList) {
 
