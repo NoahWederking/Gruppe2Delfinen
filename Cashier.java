@@ -10,14 +10,14 @@ public class Cashier {
 
 
     //Instances
-    Menu memberPrices = new Menu("PRICE LISTS: ", "Please choose: ", new String[]{
+    Menu memberMenu = new Menu("PRICE LISTS: ", "Please choose: ", new String[]{
             "1. Junior swimmers." + "\n" +
                     "2. Senior swimmers." + "\n" +
                     "3. Adult swimmers."});
     Menu cashierMenu = new Menu("====Cashier Menu====", "Please choose: ", new String[]
             {"1. View member state", "2. View missing payments", "9. To go back."});
 
-    public Cashier() throws IOException {
+    public Cashier() {
     }
 
     //Methods
@@ -40,21 +40,21 @@ public class Cashier {
     public void viewMissingPayments(MembersList membersList) {
         for (Member member : membersList.membersInDebt) {
            if (member.getAge() < 18) {
-               System.out.println(member.getName() + " DEBT: " + juniorPrice);
+               System.out.println(member.getName() + " " + member.getAge() + " DEBT: " + juniorPrice + " DKK");
 
            } else if (member.getAge() > 18 && member.getAge() < 60) {
-               System.out.println(member.getName() + " DEBT: " + adultPrice);
+               System.out.println(member.getName() + " " + member.getAge() + " DEBT: " + adultPrice + " DKK");
 
            } else if (member.getAge() > 60) {
-               System.out.println(member.getName() + " DEBT: " + seniorPrice);
+               System.out.println(member.getName() + " " + member.getAge() + " DEBT: " + seniorPrice + " DKK");
            }
         }
     }
 
     public void viewMembershipState(MembersList membersList, Log log, Calender calender) throws IOException {
         log.writeLine("\n" + calender.formattedDate + " VIEWING MEMBERSHIP STATE");
-        memberPrices.printMenu();
-        int chooseList = memberPrices.readChoice();
+        memberMenu.printMenu();
+        int chooseList = memberMenu.readChoice();
 
         switch (chooseList) {
             case 1 -> {
@@ -83,7 +83,7 @@ public class Cashier {
             }
             default -> {
                 System.out.println("Invalid input.");
-                memberPrices.readChoice();
+                memberMenu.readChoice();
             }
         }
     }

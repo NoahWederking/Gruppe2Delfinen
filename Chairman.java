@@ -18,7 +18,7 @@ public class Chairman {
             {"1. Create new member", "2. View member list",
                     "3. Change membership status", "9. To go back"});
 
-    public Chairman() throws IOException {
+    public Chairman() {
     }
 
     //Methods

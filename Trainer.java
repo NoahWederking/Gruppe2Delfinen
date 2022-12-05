@@ -173,7 +173,7 @@ public class Trainer {
     }
 
     public void makeMemberCompetitive(Member member, MembersList membersList, Calender calender, Log log) throws IOException {
-        log.writeLine("\n" + calender.formattedDate + " MAKE A MEMBER COMPETITIVE");
+        log.writeLine("\n" + calender.formattedDate + " MAKING A MEMBER COMPETITIVE");
         Scanner scanner = new Scanner(System.in);
         competitiveMemberMenu.printMenu();
         int chooseList = competitiveMemberMenu.readChoice();
