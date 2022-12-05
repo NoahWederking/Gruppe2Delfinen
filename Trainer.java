@@ -27,7 +27,7 @@ public class Trainer {
 
 
     //Constructors
-    public Trainer() throws IOException {
+    public Trainer() {
     }
 
     //Methods
@@ -39,14 +39,14 @@ public class Trainer {
                 case 1 -> printList(membersList, calender, log);
                 case 2 -> createCompetitiveMember(member, membersList, calender, log);
                 case 3 -> changeSwimResults(membersList);
-                case 4 -> showTopFive(membersList, calender, log);
+                case 4 -> showTopFive(membersList, log);
                 case 5 -> printMembers(membersList.adultCompetitiveSwimmers);
                 case 9 -> isRunning = false;
                 default -> System.out.println("Invalid input");
             }
         } while (isRunning);
     }
-    public void showTopFive(MembersList membersList, Calender calender, Log log) throws IOException {
+    public void showTopFive(MembersList membersList, Log log) throws IOException {
         log.writeLine("VIEWING TOP 5 LIST");
         Scanner scanner = new Scanner(System.in);
         competitiveMemberMenu.printMenu();
