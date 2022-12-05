@@ -13,3 +13,9 @@
 01-12-2022 15:40:11 Member: Name: Oliver Age: 25 Price: 1600
 01-12-2022 15:40:11 Member: Name: Noah Age: 21 Price: 1600
 01-12-2022 15:40:11 Closing program
+03-12-2022 16:07:15 Starting program
+03-12-2022 16:07:15 Closing program
+03-12-2022 16:29:05 Starting program
+03-12-2022 16:29:05 Closing program
+03-12-2022 16:56:27 Starting program
+03-12-2022 16:56:27 Closing program

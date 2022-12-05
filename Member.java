@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Member {
 
@@ -10,16 +8,12 @@ public class Member {
     private String swimStyle;
     private double bestTime;
     private int latestPosition;
-    private final int juniorPrice = 1000;
-    private final int adultPrice = 1600;
-    private final int seniorPrice = 1200;
-    private final int passivePrice = 500;
     private Log log;
 
     //Constructors
-    public Member(Trainer trainer) throws IOException {
+    /*public Member(Trainer trainer) throws IOException {
         this.trainer = trainer;
-    }
+    }*/
     public Member(Log log) throws IOException {
         this.log = log;
     }
@@ -38,11 +32,10 @@ public class Member {
     }
 
     //Instances
-    Calender calender = new Calender();
-    Trainer trainer = new Trainer();
-    MembersList membersList = new MembersList();
+    /*Calender calender = new Calender();
+    Trainer trainer = new Trainer();*/
 
-    Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", new String[]{
+   /* Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", new String[]{
             "1. Junior swimmers." + "\n" +
                     "2. Senior swimmers." + "\n" +
                     "3. Adult swimmers." + "\n" +
@@ -55,7 +48,7 @@ public class Member {
                     "3. Adult swimmers."});
 
     Menu competitiveMemberList = new Menu("COMPETITIVE MEMBER LISTS:", "Please choose: ", new String[]{
-            "1, Competitive members over 18." + "\n" + "2. Competitive members under 18"});
+            "1, Competitive members over 18." + "\n" + "2. Competitive members under 18"});*/
 
     //Setters
     public void setName(String name) {
@@ -102,7 +95,7 @@ public class Member {
 
 
     //Methods
-    public void createMember() throws IOException {
+    /*public void createMember() throws IOException {
         log.writeLine("\n" + calender.formattedDate + " CREATING MEMBER");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please insert new member name: ");
@@ -120,9 +113,7 @@ public class Member {
     public void createCompetitiveMember() throws IOException {
         log.writeLine("\n" + calender.formattedDate + " CREATING COMPETITIVE MEMBER");
         Scanner scanner = new Scanner(System.in);
-        //TODO Lav en switch til print Printlist til competitive med JUnior og adult swimmers
         System.out.println("Please select a member to make competitive: ");
-        int index = scanner.nextInt();
         scanner.nextLine();
 
         name = getName();
@@ -145,27 +136,15 @@ public class Member {
 
     public void checkAge() throws IOException {
         if (age < 18) {
-            membersList.juniorSwimmers.add(new Member(getName(), getAge()));
+            MembersList.juniorSwimmers.add(new Member(getName(), getAge()));
 
         } else if (age > 60) {
-            membersList.seniorSwimmers.add(new Member(getName(), getAge()));
+            MembersList.seniorSwimmers.add(new Member(getName(), getAge()));
 
         } else if (age > 18 && age < 60) {
-            membersList.adultSwimmers.add(new Member(getName(), getAge()));
+            MembersList.adultSwimmers.add(new Member(getName(), getAge()));
         }
     }
-
-    public void checkCompetitiveAge() throws IOException {
-        if (age < 18) {
-            membersList.juniorCompetitiveSwimmers.add(new Member(getName(), getAge()));
-        } else if (age > 18) {
-            membersList.adultCompetitiveSwimmers.add(new Member(getName(), getAge()));
-        }
-    }
-
-
-    //TODO Lav en switch til print
-
 
     public void printList() throws IOException {
         log.writeLine("\n" + calender.formattedDate + " VIEWING MEMBER LIST");
@@ -174,31 +153,31 @@ public class Member {
 
         switch (chooseList) {
             case 1 -> {
-                for (Member member : membersList.juniorSwimmers) {
+                for (Member member : MembersList.juniorSwimmers) {
                     System.out.println(member);
                 }
                 log.writeLine("\n" + calender.formattedDate + " VIEWING JUNIOR SWIMMERS");
             }
             case 2 -> {
-                for (Member member : membersList.seniorSwimmers) {
+                for (Member member : MembersList.seniorSwimmers) {
                     System.out.println(member);
                 }
                 log.writeLine("\n" + calender.formattedDate + " VIEWING SENIOR SWIMMERS");
             }
             case 3 -> {
-                for (Member member : membersList.adultSwimmers) {
+                for (Member member : MembersList.adultSwimmers) {
                     System.out.println(member);
                 }
                 log.writeLine("\n" + calender.formattedDate + " VIEWING ADULT SWIMMERS");
             }
             case 4 -> {
-                for (Member member : membersList.adultCompetitiveSwimmers) {
+                for (Member member : MembersList.adultCompetitiveSwimmers) {
                     System.out.println(member);
                 }
                 log.writeLine("\n" + calender.formattedDate + " VIEWING ADULT COMPETITIVE SWIMMERS");
             }
             case 5 -> {
-                for (Member member : membersList.juniorCompetitiveSwimmers) {
+                for (Member member : MembersList.juniorCompetitiveSwimmers) {
                     System.out.println(member);
                 }
                 log.writeLine("\n" + calender.formattedDate + " VIEWING JUNIOR COMPETITIVE SWIMMERS");
@@ -217,15 +196,15 @@ public class Member {
         int chooseList = memberLists.readChoice();
 
         switch (chooseList) {
-            case 1 -> passiveMembers(scanner, membersList.juniorSwimmers);
+            case 1 -> passiveMembers(scanner, MembersList.juniorSwimmers);
 
-            case 2 -> passiveMembers(scanner, membersList.seniorSwimmers);
+            case 2 -> passiveMembers(scanner, MembersList.seniorSwimmers);
 
-            case 3 -> passiveMembers(scanner, membersList.adultSwimmers);
+            case 3 -> passiveMembers(scanner, MembersList.adultSwimmers);
 
-            case 4 -> passiveMembers(scanner, membersList.adultCompetitiveSwimmers);
+            case 4 -> passiveMembers(scanner, MembersList.adultCompetitiveSwimmers);
 
-            case 5 -> passiveMembers(scanner, membersList.juniorCompetitiveSwimmers);
+            case 5 -> passiveMembers(scanner, MembersList.juniorCompetitiveSwimmers);
 
             default -> {
                 System.out.println("Invalid input.");
@@ -237,15 +216,15 @@ public class Member {
 
     private void passiveMembers(Scanner scanner, ArrayList<Member> swimmer) {
         int id = 0;
-        for (int i = 0; i < swimmer.size(); i++) {
+        for (Member member : swimmer) {
             System.out.print(id + 1 + "# ");
-            System.out.println(swimmer.get(i));
+            System.out.println(member);
             id++;
         }
             System.out.println("Please select the index of which member to make passive.");
             int index = scanner.nextInt();
-            membersList.passiveSwimmers.add(swimmer.get(index));
-            swimmer.remove(index);
+        MembersList.passiveSwimmers.add(swimmer.get(index - 1));
+            swimmer.remove(index - 1);
 
 
     }
@@ -257,25 +236,29 @@ public class Member {
 
         switch (chooseList) {
             case 1 -> {
-                for (Member member : membersList.juniorSwimmers) {
+                for (Member member : MembersList.juniorSwimmers) {
+                    int juniorPrice = 1000;
                     System.out.println(member + " Price: " + juniorPrice);
                     log.writeLine("\n" + calender.formattedDate + member + " Price: " + juniorPrice);
                 }
             }
             case 2 -> {
-                for (Member member : membersList.seniorSwimmers) {
+                for (Member member : MembersList.seniorSwimmers) {
+                    int seniorPrice = 1200;
                     System.out.println(member + " Price: " + seniorPrice);
                     log.writeLine("\n" + calender.formattedDate + member + " Price: " + seniorPrice);
                 }
             }
             case 3 -> {
-                for (Member member : membersList.adultSwimmers) {
+                for (Member member : MembersList.adultSwimmers) {
+                    int adultPrice = 1600;
                     System.out.println(member + " Price: " + adultPrice);
                     log.writeLine("\n" + calender.formattedDate + member + " Price: " + adultPrice);
                 }
             }
             case 4 -> {
-                for (Member member : membersList.passiveSwimmers) {
+                for (Member member : MembersList.passiveSwimmers) {
+                    int passivePrice = 500;
                     System.out.println(member + " Price: " + passivePrice);
                 }
             }
@@ -293,7 +276,7 @@ public class Member {
         switch (answer) {
             case 1 -> {
                 int i = 0;
-                for (Member member : membersList.adultCompetitiveSwimmers) {
+                for (Member member : MembersList.adultCompetitiveSwimmers) {
                     System.out.print(i + 1 +"# ");
                     System.out.println(member);
                     i++;
@@ -302,7 +285,7 @@ public class Member {
             }
             case 2 -> {
                 int i = 0;
-                for (Member member : membersList.juniorCompetitiveSwimmers) {
+                for (Member member : MembersList.juniorCompetitiveSwimmers) {
                     System.out.print(i + 1 + "# ");
                     System.out.println(member);
                     i++;
@@ -319,28 +302,37 @@ public class Member {
         System.out.println("Please input the new best time.");
         double newBestTime = scanner.nextDouble();
         if (juniorOrAdult.equals("adult")) {
-            membersList.adultCompetitiveSwimmers.get(index - 1).setBestTime(newBestTime);
+            MembersList.adultCompetitiveSwimmers.get(index - 1).setBestTime(newBestTime);
             System.out.println("Result has now been updated.");
 
         } else {
-            membersList.juniorCompetitiveSwimmers.get(index - 1).setBestTime(newBestTime);
+            MembersList.juniorCompetitiveSwimmers.get(index - 1).setBestTime(newBestTime);
             System.out.println("Result has now been updated.");
         }
     }
 
     public void showTopFive() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Top 5 list over adult or junior");
         competitiveMemberList.printMenu();
+        System.out.println("Please choose either adult or junior (1 , 2)");
+        int answer = scanner.nextInt();
+        if (answer == 1) {
+            chooseTopFive(MembersList.adultCompetitiveSwimmers);
 
-    }
-
-    public void chooseTopFive(String adultOrJunior) {
-        for (int i = 0; i <membersList.adultCompetitiveSwimmers.size() ; i++) {
-            membersList.adultCompetitiveSwimmers.get(i).getBestTime();
+        } else {
+            chooseTopFive(MembersList.juniorCompetitiveSwimmers);
         }
     }
 
+    public void chooseTopFive(ArrayList<Member> swimmer) {
+        int id = 0;
+        for (Member member : swimmer) {
+            System.out.print(id + 1 + "# ");
+            System.out.println(member.getBestTime());
+            id++;
+        }
+    }
+*/
     @Override
     public String toString() {
         return " Member: " + "Name: " + name + " Age: " + age;

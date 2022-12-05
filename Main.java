@@ -1,36 +1,27 @@
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Main {
 
     //Attributes
     private boolean isRunning = true;
 
-    //TIME
-    LocalDateTime time = LocalDateTime.now();
-    DateTimeFormatter myFormattedDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-    String formattedDate = time.format(myFormattedDate);
-
     //Instances
     Menu generalMenu = new Menu("=====Dolphin swimmers menu=====", "Please choose user: ",
             new String[]{"1. Trainer", "2. Cashier", "3. Chairman", "9. Quit"});
     Log log = new Log();
-    Member member = new Member(log);
-    Trainer trainer = new Trainer(member);
-    Chairman chairman = new Chairman(member);
-    Cashier cashier = new Cashier(member);
+    Calender calender = new Calender();
+    Chairman chairman = new Chairman();
+    Trainer trainer = new Trainer();
+    Cashier cashier = new Cashier();
 
-    //Constructors
-    public Main(String formattedDate) throws IOException {
-        this.formattedDate = formattedDate;
-    }
+    //Methods
     public Main() throws IOException {
 
     }
     public void run() throws IOException {
+        MembersList.initialize();
 
-        log.writeLine("\n" + formattedDate + " Starting program");
+        log.writeLine("\n" + calender.formattedDate + " Starting program");
 
         do {
             generalMenu.printMenu();
@@ -42,13 +33,12 @@ public class Main {
                 case 3 -> chairman.chairmanMenu();
                 case 9 -> {
                     System.out.println("Quit");
-                    log.writeLine("\n" + formattedDate + " Closing program");
+                    log.writeLine("\n" + calender.formattedDate + " Closing program");
                     log.closeFile();
                     isRunning = false;
                 }
                 default -> {
                     System.out.println("Invalid input");
-                    generalMenu.readChoice();
                 }
             }
         } while (isRunning);
