@@ -14,13 +14,14 @@ public class Main {
     Trainer trainer = new Trainer();
     Cashier cashier = new Cashier();
     Member member = new Member();
+    MembersList membersList = new MembersList();
 
     //Methods
     public Main() throws IOException {
 
     }
     public void run() throws IOException {
-        MembersList.initialize();
+        membersList.initialize();
 
         log.writeLine("\n" + calender.formattedDate + " Starting program");
 
@@ -29,18 +30,16 @@ public class Main {
             int choice = generalMenu.readChoice();
 
             switch (choice) {
-                case 1 -> trainer.trainerMenu(member);
-                case 2 -> cashier.cashierMenu();
-                case 3 -> chairman.chairmanMenu(member);
+                case 1 -> trainer.trainerMenu(member, membersList, calender, log);
+                case 2 -> cashier.cashierMenu(membersList, calender, log);
+                case 3 -> chairman.chairmanMenu(member, membersList, calender, log);
                 case 9 -> {
                     System.out.println("Quit");
                     log.writeLine("\n" + calender.formattedDate + " Closing program");
                     log.closeFile();
                     isRunning = false;
                 }
-                default -> {
-                    System.out.println("Invalid input");
-                }
+                default -> System.out.println("Invalid input");
             }
         } while (isRunning);
     }

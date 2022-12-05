@@ -7,15 +7,8 @@ public class Trainer {
 
     //Attributes
     private boolean isRunning;
-    private int age;
-    private String name;
-    private String swimStyle;
-    private double bestTime;
-    private int latestPosition;
 
     //Instances
-    Calender calender = new Calender();
-    Log log = new Log();
     Menu competitiveMemberList = new Menu("COMPETITIVE MEMBER LISTS:", "Please choose: ", new String[]{
             "1, Competitive members over 18." + "\n" + "2. Competitive members under 18"});
     Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", new String[]{
@@ -39,64 +32,33 @@ public class Trainer {
     public Trainer() throws IOException {
     }
 
-    //Setters
-    public void setSwimStyle(String swimStyle) {
-        this.swimStyle = swimStyle;
-    }
-    public void setBestTime(double bestTime) {
-        this.bestTime = bestTime;
-    }
-
-    public void setLatestPosition(int latestPosition) {
-        this.latestPosition = latestPosition;
-    }
-
-    //Getters
-    public String getSwimStyle() {
-        return swimStyle;
-    }
-    public int getLatestPosition() {
-        return latestPosition;
-    }
-
-    public double getBestTime() {
-        return bestTime;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
     //Methods
-    public void trainerMenu(Member member) throws IOException {
+    public void trainerMenu(Member member, MembersList membersList, Calender calender, Log log) throws IOException {
         trainerMenu.printMenu();
         int choice = trainerMenu.readChoice();
         do {
             switch (choice) {
-                case 1 -> printList();
-                case 2 -> createCompetitiveMember();
-                case 3 -> changeSwimResults();
-                case 4 -> showTopFive();
-                case 5 -> printMembers(MembersList.adultCompetitiveSwimmers);
+                case 1 -> printList(membersList, calender, log);
+                case 2 -> createCompetitiveMember(member, membersList, calender, log);
+                case 3 -> changeSwimResults(membersList);
+                case 4 -> showTopFive(membersList, calender, log);
+                case 5 -> printMembers(membersList.adultCompetitiveSwimmers);
                 case 9 -> isRunning = false;
                 default -> System.out.println("Invalid input");
             }
         } while (isRunning);
     }
-    public void showTopFive() throws IOException {
+    public void showTopFive(MembersList membersList, Calender calender, Log log) throws IOException {
         log.writeLine("VIEWING TOP 5 LIST");
         Scanner scanner = new Scanner(System.in);
         competitiveMemberList.printMenu();
         System.out.println("Please choose either adult or junior (1 , 2)");
         int answer = scanner.nextInt();
         if (answer == 1) {
-            chooseTopFive(MembersList.adultCompetitiveSwimmers);
+            chooseTopFive(membersList.adultCompetitiveSwimmers);
 
         } else {
-            chooseTopFive(MembersList.juniorCompetitiveSwimmers);
+            chooseTopFive(membersList.juniorCompetitiveSwimmers);
         }
     }
 
@@ -109,52 +71,52 @@ public class Trainer {
             id++;
         }
     }
-    public void changeSwimResults() {
+    public void changeSwimResults(MembersList membersList) {
         competitiveMemberList.printMenu();
         int answer = competitiveMemberList.readChoice();
 
         switch (answer) {
             case 1 -> {
                 int i = 0;
-                for (Member member : MembersList.adultCompetitiveSwimmers) {
+                for (Member member : membersList.adultCompetitiveSwimmers) {
                     System.out.print(i + 1 +"# ");
                     System.out.println(member);
                     i++;
                 }
-                newBestResult("adult");
+                newBestResult("adult", membersList);
             }
             case 2 -> {
                 int i = 0;
-                for (Member member : MembersList.juniorCompetitiveSwimmers) {
+                for (Member member : membersList.juniorCompetitiveSwimmers) {
                     System.out.print(i + 1 + "# ");
                     System.out.println(member);
                     i++;
                 }
-                newBestResult("junior");
+                newBestResult("junior", membersList);
             }
         }
     }
 
-    public void newBestResult(String juniorOrAdult) {
+    public void newBestResult(String juniorOrAdult, MembersList membersList) {
         Scanner scanner = new Scanner(System.in);
         int index = scanner.nextInt();
         scanner.nextLine(); //Scanner bug
         System.out.println("Please input the new best time.");
         double newBestTime = scanner.nextDouble();
         if (juniorOrAdult.equals("adult")) {
-            MembersList.adultCompetitiveSwimmers.get(index - 1).setBestTime(newBestTime);
+            membersList.adultCompetitiveSwimmers.get(index - 1).setBestTime(newBestTime);
             System.out.println("Result has now been updated.");
 
         } else {
-            MembersList.juniorCompetitiveSwimmers.get(index - 1).setBestTime(newBestTime);
+            membersList.juniorCompetitiveSwimmers.get(index - 1).setBestTime(newBestTime);
             System.out.println("Result has now been updated.");
         }
     }
-    public void createCompetitiveMember() throws IOException {
+    public void createCompetitiveMember(Member member, MembersList membersList, Calender calender, Log log) throws IOException {
         log.writeLine("\n" + calender.formattedDate + " CREATING COMPETITIVE MEMBER");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please select a team");
-        makeMemberCompetitive();
+        makeMemberCompetitive(member, membersList, calender, log);
 
 //        System.out.println("Please select a member to make competitive: ");
 //        scanner.nextLine();
@@ -201,47 +163,44 @@ public class Trainer {
         }
     }
 
-    public void swimDisciplines() {
+    public void swimDisciplines(Member member) {
         swimDisciplinesMenu.printMenu();
         int choice = swimDisciplinesMenu.readChoice();
         switch (choice) {
-            case 1 -> setSwimStyle("Crawl");
-            case 2 -> setSwimStyle("Breast Stroke");
-            case 3 -> setSwimStyle("Butterfly");
+            case 1 -> member.setSwimStyle("Crawl");
+            case 2 -> member.setSwimStyle("Breast Stroke");
+            case 3 -> member.setSwimStyle("Butterfly");
             default -> System.out.println("Invalid input");
         }
     }
 
-    public void makeMemberCompetitive() throws IOException {
+    public void makeMemberCompetitive(Member member, MembersList membersList, Calender calender, Log log) throws IOException {
         log.writeLine("\n" + calender.formattedDate + " MAKE A MEMBER COMPETITIVE");
         Scanner scanner = new Scanner(System.in);
         competitiveMemberMenu.printMenu();
         int chooseList = competitiveMemberMenu.readChoice();
 
         switch (chooseList) {
-            case 1 -> competitiveMembers(scanner, MembersList.juniorSwimmers);
-            case 2 -> competitiveMembers(scanner, MembersList.adultSwimmers);
-            default -> {
-                System.out.println("Invalid input.");
-                competitiveMemberMenu.readChoice();
-            }
+            case 1 -> competitiveMembers(scanner, membersList.juniorSwimmers, member, membersList);
+            case 2 -> competitiveMembers(scanner, membersList.adultSwimmers, member, membersList);
+            default -> System.out.println("Invalid input.");
+
         }
         System.out.println("You have now added member to a competitive team.");
     }
 
-    private void competitiveMembers(Scanner scanner, ArrayList<Member> members) {
+    private void competitiveMembers(Scanner scanner, ArrayList<Member> members, Member member, MembersList membersList) {
             printMembers(members);
             System.out.println("Please select the index of which member to make competitive.");
             int index = scanner.nextInt();
-
-            if (getAge() < 18) {
-                members.get(index).setBestTime(bestTime);
-                members.get(index).setLatestPosition(latestPosition);
-                MembersList.juniorCompetitiveSwimmers.add(new Member(getName(), getAge(), getSwimStyle(),
-                        getBestTime(), getLatestPosition()));
-            } else if (getAge() > 18) {
-                MembersList.adultCompetitiveSwimmers.add(new Member(getName(), getAge(), getSwimStyle(),
-                        getBestTime(), getLatestPosition()));
+            if (member.getAge() < 18) {
+                members.get(index).setBestTime(member.getBestTime());
+                members.get(index).setLatestPosition(member.getLatestPosition());
+                membersList.juniorCompetitiveSwimmers.add(new Member(member.getName(), member.getAge(),
+                        member.getSwimStyle(), member.getBestTime(), member.getLatestPosition()));
+            } else if (member.getAge() > 18) {
+                membersList.adultCompetitiveSwimmers.add(new Member(member.getName(), member.getAge(),
+                        member.getSwimStyle(), member.getBestTime(), member.getLatestPosition()));
             }
 
             standard.remove(index);

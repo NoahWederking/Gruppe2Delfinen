@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 public class Member {
 
     //Attributes
@@ -59,7 +57,8 @@ public class Member {
 
     @Override
     public String toString() {
-        return " Member: " + "Name: " + name + " Age: " + age + " Swim style: " + swimStyle + " Best time: " +
-                bestTime + " Latest position: " + latestPosition;
+        return " Member: " + "Name: " + getName() + " Age: " + getAge() +
+                " Swim style: " + getSwimStyle() + " Best time: " +
+                getBestTime() + " Latest position: " + getLatestPosition();
     }
 }
