@@ -27,7 +27,6 @@ public class MembersList {
         juniorSwimmers.add(new Member("Emil", 15));
         juniorSwimmers.add(new Member("Emma", 10));
         juniorSwimmers.add(new Member("Victor", 16));
-        Log.writeToFile(juniorSwimmers);
     }
 
     public void seniorMembers() throws IOException {
@@ -36,7 +35,6 @@ public class MembersList {
         seniorSwimmers.add(new Member("Stanley", 60));
         seniorSwimmers.add(new Member("Yvonne", 63));
         seniorSwimmers.add(new Member("Ruth", 77));
-        Log.writeToFile(seniorSwimmers);
     }
 
     public void adultMembers() throws IOException {
@@ -45,7 +43,6 @@ public class MembersList {
         adultSwimmers.add(new Member("Johanne", 32));
         adultSwimmers.add(new Member("Mikkel", 42));
         adultSwimmers.add(new Member("Thomas", 55));
-        Log.writeToFile(adultSwimmers);
     }
 
     public void passiveMembers() throws IOException {
@@ -54,7 +51,6 @@ public class MembersList {
         passiveSwimmers.add(new Member("Nicolas", 32));
         passiveSwimmers.add(new Member("Frederik", 36));
         passiveSwimmers.add(new Member("Signe", 41));
-        Log.writeToFile(passiveSwimmers);
     }
 
     public void competitiveJuniorMembers() throws IOException {

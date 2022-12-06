@@ -58,21 +58,13 @@ public class Cashier {
                     trainer.printMembers(membersList.juniorSwimmers,juniorPrice);
             }
             case 2 -> {
-                    trainer.printMembers(membersList.seniorswimmers);
-                    for (Member member : membersList.seniorSwimmers);
-                    System.out.println(" Price: " + seniorPrice);
-
+                    trainer.printMembers(membersList.seniorSwimmers, seniorPrice);
             }
             case 3 -> {
-                for (Member member : membersList.adultSwimmers) {
-                    System.out.println(member + " Price: " + adultPrice);
-                }
+                trainer.printMembers(membersList.adultSwimmers, adultPrice);
             }
             case 4 -> {
-                for (Member member : membersList.passiveSwimmers) {
-                    int passivePrice = 500;
-                    System.out.println(member + " Price: " + passivePrice);
-                }
+                trainer.printMembers(membersList.passiveSwimmers, passivePrice);
             }
             default -> {
                 System.out.println("Invalid input.");

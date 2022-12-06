@@ -32,8 +32,6 @@ public class Main {
                 case 3 -> chairman.chairmanMenu(member, membersList, log);
                 case 9 -> {
                     System.out.println("Quit");
-                    Log.getMembers();
-                    log.closeFile();
                     isRunning = false;
                 }
                 default -> System.out.println("Invalid input");
