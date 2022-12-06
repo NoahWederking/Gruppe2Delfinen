@@ -31,23 +31,23 @@ public class Trainer {
     }
 
     //Methods
-    public void trainerMenu(Member member, MembersList membersList, Calender calender, Log log) throws IOException {
+    public void trainerMenu(Member member, MembersList membersList, Log log) throws IOException {
         trainerMenu.printMenu();
         int choice = trainerMenu.readChoice();
         do {
             switch (choice) {
-                case 1 -> printList(membersList, calender, log);
-                case 2 -> createCompetitiveMember(member, membersList, calender, log);
+                case 1 -> printList(membersList);
+                case 2 -> createCompetitiveMember(member, membersList, log);
                 case 3 -> changeSwimResults(membersList);
-                case 4 -> showTopFive(membersList, log);
-                case 5 -> printMembers(membersList.adultCompetitiveSwimmers);
+                case 4 -> showTopFive(membersList);
+                case 5 -> printMembers(membersList.adultCompetitiveSwimmers,"");
                 case 9 -> isRunning = false;
                 default -> System.out.println("Invalid input");
             }
         } while (isRunning);
     }
-    public void showTopFive(MembersList membersList, Log log) throws IOException {
-        log.writeLine("VIEWING TOP 5 LIST");
+
+    public void showTopFive(MembersList membersList) {
         Scanner scanner = new Scanner(System.in);
         competitiveMemberMenu.printMenu();
         System.out.println("Please choose either adult or junior (1 , 2)");
@@ -69,6 +69,7 @@ public class Trainer {
             id++;
         }
     }
+
     public void changeSwimResults(MembersList membersList) {
         competitiveMemberMenu.printMenu();
         int answer = competitiveMemberMenu.readChoice();
@@ -77,7 +78,7 @@ public class Trainer {
             case 1 -> {
                 int i = 0;
                 for (Member member : membersList.adultCompetitiveSwimmers) {
-                    System.out.print(i + 1 +"# ");
+                    System.out.print(i + 1 + "# ");
                     System.out.println(member);
                     i++;
                 }
@@ -161,48 +162,50 @@ public class Trainer {
         }
     }
 
-    public void swimDisciplines(Member member) {
+    public void swimDisciplines(int index, ArrayList<Member> members) {
         swimDisciplinesMenu.printMenu();
         int choice = swimDisciplinesMenu.readChoice();
         switch (choice) {
-            case 1 -> member.setSwimStyle("Crawl");
-            case 2 -> member.setSwimStyle("Breast Stroke");
-            case 3 -> member.setSwimStyle("Butterfly");
+            case 1 -> members.get(index).setSwimStyle("Crawl");
+            case 2 -> members.get(index).setSwimStyle("Breast Stroke");
+            case 3 -> members.get(index).setSwimStyle("Butterfly");
             default -> System.out.println("Invalid input");
         }
     }
 
-    public void makeMemberCompetitive(Member member, MembersList membersList, Calender calender, Log log) throws IOException {
-        log.writeLine("\n" + calender.formattedDate + " MAKING A MEMBER COMPETITIVE");
+    public void createCompetitiveMember(Member member, MembersList membersList, Log log) throws IOException {
         Scanner scanner = new Scanner(System.in);
         competitiveMemberMenu.printMenu();
         int chooseList = competitiveMemberMenu.readChoice();
 
         switch (chooseList) {
-            case 1 -> competitiveMembers(scanner, membersList.juniorSwimmers, member, membersList);
-            case 2 -> competitiveMembers(scanner, membersList.adultSwimmers, member, membersList);
+            case 1 -> competitiveMembers(scanner, membersList.juniorSwimmers, member, membersList, log);
+            case 2 -> competitiveMembers(scanner, membersList.adultSwimmers, member, membersList, log);
             default -> System.out.println("Invalid input.");
 
         }
         System.out.println("You have now added member to a competitive team.");
     }
 
-    private void competitiveMembers(Scanner scanner, ArrayList<Member> members, Member member, MembersList membersList) {
-            printMembers(members);
-            System.out.println("Please select the index of which member to make competitive.");
-            int index = scanner.nextInt();
-            if (member.getAge() < 18) {
-                members.get(index).setBestTime(member.getBestTime());
-                members.get(index).setLatestPosition(member.getLatestPosition());
-                membersList.juniorCompetitiveSwimmers.add(new Member(member.getName(), member.getAge(),
-                        member.getSwimStyle(), member.getBestTime(), member.getLatestPosition()));
-            } else if (member.getAge() > 18) {
-                membersList.adultCompetitiveSwimmers.add(new Member(member.getName(), member.getAge(),
-                        member.getSwimStyle(), member.getBestTime(), member.getLatestPosition()));
-            }
-
-            standard.remove(index);
+    private void competitiveMembers(Scanner scanner, ArrayList<Member> members, Member member, MembersList membersList, Log log) throws IOException {
+        printMembers(members,"");
+        System.out.println("Please select the index of which member to make competitive.");
+        int index = scanner.nextInt();
+        getInformationAboutCompetitiveSwimmer(scanner, members, index);
+        if (members.get(index).getAge() < 18) {
+            membersList.juniorCompetitiveSwimmers.add(new Member(members.get(index).getName(), members.get(index).getAge(),
+                    members.get(index).getSwimStyle(), members.get(index).getBestTime(),
+                    members.get(index).getLatestPosition()));
+        } else if (members.get(index).getAge() > 18) {
+            membersList.adultCompetitiveSwimmers.add(new Member(members.get(index).getName(),
+                    members.get(index).getAge(),
+                    members.get(index).getSwimStyle(), members.get(index).getBestTime(),
+                    members.get(index).getLatestPosition()));
         }
+        log.writeLine("\n" + member.getName()+ " " + member.getAge()+ " " + member.getSwimStyle()+ " " +
+                member.getBestTime() + " " + member.getLatestPosition());
+        members.remove(index);
+
     }
     @Override
     public String toString() {

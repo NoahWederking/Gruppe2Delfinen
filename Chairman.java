@@ -22,51 +22,48 @@ public class Chairman {
     }
 
     //Methods
-    public void chairmanMenu(Member member, MembersList membersList, Calender calender, Log log) throws IOException {
+    public void chairmanMenu(Member member, MembersList membersList, Log log) throws IOException {
         do {
             chairmanMenu.printMenu();
             int choice = chairmanMenu.readChoice();
 
             switch (choice) {
-                case 1 -> createMember(member, membersList, calender, log);
-                case 2 -> printList(membersList, calender, log);
-                case 3 -> makePassiveMember(membersList, calender, log);
+                case 1 -> createMember(member, membersList, log);
+                case 2 -> printList(membersList);
+                case 3 -> makePassiveMember(membersList);
                 case 9 -> isRunning = false;
                 default -> System.out.println("Invalid input.");
 
             }
         } while (isRunning);
     }
-    private void createMember(Member member, MembersList membersList, Calender calender, Log log) throws IOException {
-        log.writeLine("\n" + calender.formattedDate + " CREATING MEMBER");
+    private void createMember(Member member, MembersList membersList, Log log) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please insert new member name: ");
         member.setName(scanner.nextLine());
-        member.setName(member.getName());
 
         System.out.println("Please insert new member age: ");
         member.setAge(scanner.nextInt());
-        log.writeLine("\n" + calender.formattedDate + " MEMBER INFO: NAME: " +
-                member.getName() + " AGE: " + member.getAge());
-        scanner.nextLine();
-        member.setAge(member.getAge());
-        checkAge(member, membersList);
+        //scanner.nextLine(); Scanner bug
+        checkAge(member, membersList, log);
     }
 
-    private void checkAge(Member member, MembersList membersList) {
+    private void checkAge(Member member, MembersList membersList, Log log) throws IOException {
         if (member.getAge() < 18) {
             membersList.juniorSwimmers.add(new Member(member.getName(), member.getAge()));
+            log.writeLine("\n" + member.getName()+ " " + member.getAge());
 
         } else if (member.getAge() > 60) {
             membersList.seniorSwimmers.add(new Member(member.getName(), member.getAge()));
+            log.writeLine("\n" + member.getName()+ " " + member.getAge());
 
         } else if (member.getAge() > 18 && member.getAge() < 60) {
             membersList.adultSwimmers.add(new Member(member.getName(), member.getAge()));
+            log.writeLine("\n" + member.getName()+ " " + member.getAge());
         }
     }
 
-    private void printList(MembersList membersList, Calender calender, Log log) throws IOException {
-        log.writeLine("\n" + calender.formattedDate + " VIEWING MEMBER LIST");
+    private void printList(MembersList membersList) {
         memberLists.printMenu();
         int chooseList = memberLists.readChoice();
 
@@ -75,31 +72,26 @@ public class Chairman {
                 for (Member member : membersList.juniorSwimmers) {
                     System.out.println(member);
                 }
-                log.writeLine("\n" + calender.formattedDate + " VIEWING JUNIOR SWIMMERS");
             }
             case 2 -> {
                 for (Member member : membersList.seniorSwimmers) {
                     System.out.println(member);
                 }
-                log.writeLine("\n" + calender.formattedDate + " VIEWING SENIOR SWIMMERS");
             }
             case 3 -> {
                 for (Member member : membersList.adultSwimmers) {
                     System.out.println(member);
                 }
-                log.writeLine("\n" + calender.formattedDate + " VIEWING ADULT SWIMMERS");
             }
             case 4 -> {
                 for (Member member : membersList.adultCompetitiveSwimmers) {
                     System.out.println(member);
                 }
-                log.writeLine("\n" + calender.formattedDate + " VIEWING ADULT COMPETITIVE SWIMMERS");
             }
             case 5 -> {
                 for (Member member : membersList.juniorCompetitiveSwimmers) {
                     System.out.println(member);
                 }
-                log.writeLine("\n" + calender.formattedDate + " VIEWING JUNIOR COMPETITIVE SWIMMERS");
             }
             default -> {
                 System.out.println("Invalid input.");
@@ -108,8 +100,7 @@ public class Chairman {
         }
     }
 
-    private void makePassiveMember(MembersList membersList, Calender calender, Log log) throws IOException {
-        log.writeLine("\n" + calender.formattedDate + " MAKING A MEMBER PASSIVE");
+    private void makePassiveMember(MembersList membersList) {
         Scanner scanner = new Scanner(System.in);
         memberLists.printMenu();
         int chooseList = memberLists.readChoice();

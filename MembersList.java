@@ -1,8 +1,9 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MembersList {
 
-    public void initialize() {
+    public void initialize() throws IOException {
         juniorMembers();
         adultMembers();
         seniorMembers();
@@ -20,39 +21,43 @@ public class MembersList {
     public ArrayList<Member> adultCompetitiveSwimmers = new ArrayList<>();
     public ArrayList<Member> membersInDebt = new ArrayList<>();
 
-    public void juniorMembers() {
+    public void juniorMembers() throws IOException {
         juniorSwimmers.add(new Member("Hans", 12));
         juniorSwimmers.add(new Member("Lisa", 14));
         juniorSwimmers.add(new Member("Emil", 15));
         juniorSwimmers.add(new Member("Emma", 10));
         juniorSwimmers.add(new Member("Victor", 16));
+        Log.writeToFile(juniorSwimmers);
     }
 
-    public void seniorMembers() {
+    public void seniorMembers() throws IOException {
         seniorSwimmers.add(new Member("Ole", 66));
         seniorSwimmers.add(new Member("Morten", 75));
         seniorSwimmers.add(new Member("Stanley", 60));
         seniorSwimmers.add(new Member("Yvonne", 63));
         seniorSwimmers.add(new Member("Ruth", 77));
+        Log.writeToFile(seniorSwimmers);
     }
 
-    public void adultMembers() {
+    public void adultMembers() throws IOException {
         adultSwimmers.add(new Member("Anders", 25));
         adultSwimmers.add(new Member("Kristine", 30));
         adultSwimmers.add(new Member("Johanne", 32));
         adultSwimmers.add(new Member("Mikkel", 42));
         adultSwimmers.add(new Member("Thomas", 55));
+        Log.writeToFile(adultSwimmers);
     }
 
-    public void passiveMembers() {
+    public void passiveMembers() throws IOException {
         passiveSwimmers.add(new Member("Kristian", 25));
         passiveSwimmers.add(new Member("Nicklas", 20));
         passiveSwimmers.add(new Member("Nicolas", 32));
         passiveSwimmers.add(new Member("Frederik", 36));
         passiveSwimmers.add(new Member("Signe", 41));
+        Log.writeToFile(passiveSwimmers);
     }
 
-    public void competitiveJuniorMembers() {
+    public void competitiveJuniorMembers() throws IOException {
         juniorCompetitiveSwimmers.add(new Member("Johan", 15, "Breast Stroke", 12.0, 3));
         juniorCompetitiveSwimmers.add(new Member("Jonas", 17, "Crawl", 11.4, 4));
         juniorCompetitiveSwimmers.add(new Member("Emil", 18, "Breast Stroke", 10.6, 2));

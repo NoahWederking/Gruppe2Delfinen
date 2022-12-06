@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 public class Cashier {
 
     //Attributes
@@ -21,12 +19,12 @@ public class Cashier {
     }
 
     //Methods
-    public void cashierMenu(MembersList membersList, Calender calender, Log log) throws IOException {
+    public void cashierMenu(MembersList membersList, Trainer trainer) {
         cashierMenu.printMenu();
         int choice = cashierMenu.readChoice();
         do {
             switch (choice) {
-                case 1 -> viewMembershipState(membersList, log, calender);
+                case 1 -> viewMembershipState(membersList, trainer);
                 case 2 -> viewMissingPayments(membersList);
                 case 9 -> {
                     System.out.println("Quit");
@@ -51,28 +49,23 @@ public class Cashier {
         }
     }
 
-    public void viewMembershipState(MembersList membersList, Log log, Calender calender) throws IOException {
-        log.writeLine("\n" + calender.formattedDate + " VIEWING MEMBERSHIP STATE");
+    public void viewMembershipState(MembersList membersList, Trainer trainer) {
         memberMenu.printMenu();
         int chooseList = memberMenu.readChoice();
 
         switch (chooseList) {
             case 1 -> {
-                for (Member member : membersList.juniorSwimmers) {
-                    System.out.println(member + " Price: " + juniorPrice);
-                    log.writeLine("\n" + calender.formattedDate + member + " Price: " + juniorPrice);
-                }
+                    trainer.printMembers(membersList.juniorSwimmers,juniorPrice);
             }
             case 2 -> {
-                for (Member member : membersList.seniorSwimmers) {
-                    System.out.println(member + " Price: " + seniorPrice);
-                    log.writeLine("\n" + calender.formattedDate + member + " Price: " + seniorPrice);
-                }
+                    trainer.printMembers(membersList.seniorswimmers);
+                    for (Member member : membersList.seniorSwimmers);
+                    System.out.println(" Price: " + seniorPrice);
+
             }
             case 3 -> {
                 for (Member member : membersList.adultSwimmers) {
                     System.out.println(member + " Price: " + adultPrice);
-                    log.writeLine("\n" + calender.formattedDate + member + " Price: " + adultPrice);
                 }
             }
             case 4 -> {

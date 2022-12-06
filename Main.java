@@ -9,7 +9,6 @@ public class Main {
     Menu generalMenu = new Menu("=====Dolphin swimmers menu=====", "Please choose user: ",
             new String[]{"1. Trainer", "2. Cashier", "3. Chairman", "9. Quit"});
     Log log = new Log();
-    Calender calender = new Calender();
     Chairman chairman = new Chairman();
     Trainer trainer = new Trainer();
     Cashier cashier = new Cashier();
@@ -23,19 +22,17 @@ public class Main {
     public void run() throws IOException {
         membersList.initialize();
 
-        log.writeLine("\n" + calender.formattedDate + " Starting program");
-
         do {
             generalMenu.printMenu();
             int choice = generalMenu.readChoice();
 
             switch (choice) {
-                case 1 -> trainer.trainerMenu(member, membersList, calender, log);
-                case 2 -> cashier.cashierMenu(membersList, calender, log);
-                case 3 -> chairman.chairmanMenu(member, membersList, calender, log);
+                case 1 -> trainer.trainerMenu(member, membersList, log);
+                case 2 -> cashier.cashierMenu(membersList, trainer);
+                case 3 -> chairman.chairmanMenu(member, membersList, log);
                 case 9 -> {
                     System.out.println("Quit");
-                    log.writeLine("\n" + calender.formattedDate + " Closing program");
+                    Log.getMembers();
                     log.closeFile();
                     isRunning = false;
                 }
