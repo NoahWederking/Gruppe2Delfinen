@@ -7,6 +7,7 @@ public class Member {
     private double bestTime;
     private int latestPosition;
 
+
     //Constructor
     public Member() {
 
@@ -46,13 +47,24 @@ public class Member {
     }
 
 
+
     //Getters
-    public String getName() {
-        return name;
+    public String getSwimStyle() {
+        return swimStyle;
+    }
+    public int getLatestPosition() {
+        return latestPosition;
     }
 
     public double getBestTime() {
         return bestTime;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     @Override
@@ -62,3 +74,4 @@ public class Member {
                 getBestTime() + " Latest position: " + getLatestPosition();
     }
 }
+
