@@ -2,9 +2,9 @@ public class Cashier {
 
     //Attributes
     private boolean isRunning;
-    private final int juniorPrice = 1000;
-    private final int seniorPrice = 1200;
-    private final int adultPrice = 1600;
+    private final String juniorPrice = "Price: 1000";
+    private final String seniorPrice ="Price: 1200";
+    private final String adultPrice = "Price: 1600";
 
 
     //Instances
@@ -54,16 +54,14 @@ public class Cashier {
         int chooseList = memberMenu.readChoice();
 
         switch (chooseList) {
-            case 1 -> {
-                    trainer.printMembers(membersList.juniorSwimmers,juniorPrice);
-            }
-            case 2 -> {
-                    trainer.printMembers(membersList.seniorSwimmers, seniorPrice);
-            }
-            case 3 -> {
-                trainer.printMembers(membersList.adultSwimmers, adultPrice);
-            }
+            case 1 -> trainer.printMembers(membersList.juniorSwimmers,juniorPrice);
+
+            case 2 -> trainer.printMembers(membersList.seniorSwimmers, seniorPrice);
+
+            case 3 -> trainer.printMembers(membersList.adultSwimmers, adultPrice);
+
             case 4 -> {
+                String passivePrice = "Price: 500";
                 trainer.printMembers(membersList.passiveSwimmers, passivePrice);
             }
             default -> {
