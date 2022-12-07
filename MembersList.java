@@ -21,7 +21,7 @@ public class MembersList {
     public ArrayList<Member> adultCompetitiveSwimmers = new ArrayList<>();
     public ArrayList<Member> membersInDebt = new ArrayList<>();
 
-    public void juniorMembers() throws IOException {
+    public void juniorMembers() {
         juniorSwimmers.add(new Member("Hans", 12));
         juniorSwimmers.add(new Member("Lisa", 14));
         juniorSwimmers.add(new Member("Emil", 15));
@@ -58,22 +58,24 @@ public class MembersList {
         juniorCompetitiveSwimmers.add(new Member("Jonas", 17, "Crawl", 11.4, 4));
         juniorCompetitiveSwimmers.add(new Member("Emil", 18, "Breast Stroke", 10.6, 2));
         juniorCompetitiveSwimmers.add(new Member("Trine", 16, "Butterfly", 10.4, 1));
-        juniorCompetitiveSwimmers.add(new Member("Anna", 16, "Crawl", 10.3, 1));
+        juniorCompetitiveSwimmers.add(new Member("Anna", 16, "Crawl", 12, 1));
     }
 
-    public void competitiveAdultMembers() {
-        adultCompetitiveSwimmers.add(new Member("Rasmus", 25, "Crawl", 9.9, 1));
-        adultCompetitiveSwimmers.add(new Member("Christopher", 21, "Breast Stroke", 10.4, 2));
-        adultCompetitiveSwimmers.add(new Member("Jake", 23, "Butterfly", 11.5, 5));
-        adultCompetitiveSwimmers.add(new Member("Isabella", 28, "Butterfly", 9.8, 1));
-        adultCompetitiveSwimmers.add(new Member("Merle", 30, "Crawl", 10.6, 4));
-    }
-    public void allMembersInDebt() {
-        membersInDebt.add(juniorSwimmers.get(1));
-        membersInDebt.add(seniorSwimmers.get(2));
-        membersInDebt.add(adultSwimmers.get(3));
-        membersInDebt.add(adultCompetitiveSwimmers.get(0));
-        membersInDebt.add(juniorCompetitiveSwimmers.get(1));
-    }
+        public void competitiveAdultMembers() throws IOException {
+            adultCompetitiveSwimmers.add(new Member("Rasmus", 25, "Crawl", 9.9, 1));
+            adultCompetitiveSwimmers.add(new Member("Christopher", 21, "Breast Stroke", 10.4, 2));
+            adultCompetitiveSwimmers.add(new Member("Jake", 23, "Butterfly", 11.5, 5));
+            adultCompetitiveSwimmers.add(new Member("Isabella", 28, "Butterfly", 9.8, 1));
+            adultCompetitiveSwimmers.add(new Member("Merle", 30, "Crawl", 10.6, 4));
+        }
+
+        public void allMembersInDebt() {
+            membersInDebt.add(juniorSwimmers.get(1));
+            membersInDebt.add(seniorSwimmers.get(2));
+            membersInDebt.add(adultSwimmers.get(3));
+            membersInDebt.add(adultCompetitiveSwimmers.get(0));
+            membersInDebt.add(juniorCompetitiveSwimmers.get(1));
+        }
+
 }
 
