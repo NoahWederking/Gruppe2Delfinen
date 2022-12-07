@@ -19,10 +19,12 @@ public class Trainer {
             {"1. View Competitive Team", "2. Make member competitive", "3. Change swim results",
                     "4. View top 5 swimmers", "9. To go back."});
 
-    Menu swimDisciplinesMenu = new Menu("====Swim Disciplines====", "Please select a discipline: "
+    Menu swimDisciplinesMenu = new Menu("====Swim Disciplines====", "Please select a swimstyle:  "
             , new String[]{"1. Crawl", "2. Breast Stroke", "3. Butterfly"});
 
     Menu competitiveMemberMenu = new Menu("====Competitive Members====", "Please select a team",
+            new String[]{"1. Junior swimmers", "2. Adult swimmers"});
+    Menu juniorAndAdultMenu = new Menu("===Members===", "Please select a non-Competitive team",
             new String[]{"1. Junior swimmers", "2. Adult swimmers"});
 
 
@@ -111,56 +113,49 @@ public class Trainer {
             System.out.println("Result has now been updated.");
         }
     }
-    public void createCompetitiveMember(Member member, MembersList membersList, Calender calender, Log log) throws IOException {
-        log.writeLine("\n" + calender.formattedDate + " CREATING COMPETITIVE MEMBER");
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please select a team");
-        makeMemberCompetitive(member, membersList, calender, log);
 
-//        System.out.println("Please select a member to make competitive: ");
-//        scanner.nextLine();
-//
-//        name = getName();
-//        age = getAge();
-//
-//        System.out.println("Please enter swim style");
-//        swimDisciplines();
-//
-//        System.out.println("Please enter the members best time: ");
-//        bestTime = scanner.nextDouble();
-//        setBestTime(bestTime);
-//
-//        System.out.println("Please enter the members latest position: ");
-//        latestPosition = scanner.nextInt();
-//        setLatestPosition(latestPosition);
-
-
+    //TODO indsæt print arraylist metode fra noahs project
+    public void printMembers(ArrayList<Member> genericArrayList, String extra) {
+        int i = 0;
+        for (Member member : genericArrayList) {
+            System.out.print(i + 0 + "# ");
+            System.out.printf("Name: " + member.getName() + " Age: " + member.getAge() + "\n");
+            i++;
+        }
     }
-    public void printList() throws IOException {
-        log.writeLine("\n" + calender.formattedDate + " VIEWING MEMBER LIST");
+
+    public void printCompetitive(ArrayList<Member> genericArrayList, String extra) {
+        int i = 0;
+        for (Member member : genericArrayList) {
+            System.out.print(i + 0 + "# ");
+            System.out.printf("Name: " + member.getName() + " Age: " + member.getAge() + " SwimStyle: " + member.getSwimStyle()
+                    + " Besttime:  " + member.getBestTime() + " Latest Position: " +
+                    member.getLatestPosition() +" " + extra + "\n");
+            i++;
+        }
+    }
+
+    public void printList(MembersList membersList) {
         competitiveMemberMenu.printMenu();
         int chooseList = competitiveMemberMenu.readChoice();
 
         switch (chooseList) {
+            case 1 -> printCompetitive(membersList.juniorCompetitiveSwimmers,"");
 
-            case 1 -> {
-                for (Member member : MembersList.adultCompetitiveSwimmers) {
-                    System.out.println(member);
-                }
-                log.writeLine("\n" + calender.formattedDate + " VIEWING ADULT COMPETITIVE SWIMMERS");
-            }
-            case 2 -> {
-                for (Member member : MembersList.juniorCompetitiveSwimmers) {
-                    System.out.println(member);
-                }
-                log.writeLine("\n" + calender.formattedDate + " VIEWING JUNIOR COMPETITIVE SWIMMERS");
-            }
+            case 2 -> printCompetitive(membersList.adultCompetitiveSwimmers,"");
+
             default -> {
                 System.out.println("Invalid input.");
                 memberLists.readChoice();
             }
         }
     }
+//    public void setCompetitionAndDate(int index, ArrayList <Member> members, Scanner scanner){
+//        System.out.println("Please type in the competition: ");
+//        String competition = scanner.nextLine();
+//        members.get(index).setCompetition(competition);
+//
+//    }
 
     public void swimDisciplines(int index, ArrayList<Member> members) {
         swimDisciplinesMenu.printMenu();
@@ -176,15 +171,25 @@ public class Trainer {
     public void createCompetitiveMember(Member member, MembersList membersList, Log log) throws IOException {
         Scanner scanner = new Scanner(System.in);
         competitiveMemberMenu.printMenu();
-        int chooseList = competitiveMemberMenu.readChoice();
-
+        int chooseList = juniorAndAdultMenu.readChoice();
         switch (chooseList) {
             case 1 -> competitiveMembers(scanner, membersList.juniorSwimmers, member, membersList, log);
             case 2 -> competitiveMembers(scanner, membersList.adultSwimmers, member, membersList, log);
             default -> System.out.println("Invalid input.");
 
         }
+        scanner.nextLine();
+
         System.out.println("You have now added member to a competitive team.");
+    }
+
+    public void getInformationAboutCompetitiveSwimmer(Scanner scanner, ArrayList<Member> members, int index){
+        swimDisciplines(index, members);
+        System.out.println("Please enter the members best time: ");
+        members.get(index).setBestTime(scanner.nextDouble());
+        System.out.println("Please enter the members latest position: ");
+        members.get(index).setLatestPosition(scanner.nextInt());
+
     }
 
     private void competitiveMembers(Scanner scanner, ArrayList<Member> members, Member member, MembersList membersList, Log log) throws IOException {
@@ -206,11 +211,6 @@ public class Trainer {
                 member.getBestTime() + " " + member.getLatestPosition());
         members.remove(index);
 
-    }
-    @Override
-    public String toString() {
-        return " Member: " + "Name: " + name + " Age: " + age + " Best time: " + bestTime + " Swim style: " + swimStyle +
-                " Latest position: " + latestPosition;
     }
 }
 
