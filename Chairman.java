@@ -136,8 +136,5 @@ public class Chairman {
         membersList.passiveSwimmers.add(swimmer.get(index - 1));
         swimmer.remove(index - 1);
     }
-    @Override
-    public String toString() {
-        return " Member: " + "Name: " + name + " Age: " + age;
-    }
+
 }
