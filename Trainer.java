@@ -29,8 +29,7 @@ public class Trainer {
 
 
     //Constructors
-    public Trainer() {
-    }
+    public Trainer() {}
 
     //Methods
     public void trainerMenu(Member member, MembersList membersList, Log log) throws IOException {
@@ -119,7 +118,7 @@ public class Trainer {
         int i = 0;
         for (Member member : genericArrayList) {
             System.out.print(i + 0 + "# ");
-            System.out.printf("Name: " + member.getName() + " Age: " + member.getAge() + "\n");
+            System.out.printf("Name: " + member.getName() + " Age: " + member.getAge() + " " + extra + "\n");
             i++;
         }
     }
