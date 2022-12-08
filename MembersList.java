@@ -76,6 +76,7 @@ public class MembersList {
             membersInDebt.add(adultCompetitiveSwimmers.get(0));
             membersInDebt.add(juniorCompetitiveSwimmers.get(1));
         }
+    //MVP
 
 }
 

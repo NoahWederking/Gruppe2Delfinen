@@ -5,4 +5,5 @@ public class SortSwimmersByTime implements Comparator<Member> {
     public int compare(Member o1, Member o2) {
         return Double.compare(o1.getBestTime(),o2.getBestTime());
     }
+    //MVP
 }

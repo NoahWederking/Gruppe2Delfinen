@@ -120,5 +120,4 @@ public class Chairman {
         swimmer.remove(index);
     }
 
-
 }
