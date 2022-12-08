@@ -36,5 +36,6 @@ public class Log {
             System.out.println(ex.getMessage());
             return null;
         }
+        //MVP
     }
 }
