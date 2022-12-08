@@ -9,11 +9,8 @@ public class Chairman {
 
     //Instances
     Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", new String[]{
-            "1. Junior swimmers." + "\n" +
-                    "2. Senior swimmers." + "\n" +
-                    "3. Adult swimmers." + "\n" +
-                    "4. Competitive swimmers over 18." + "\n" +
-                    "5. Competitive swimmers under 18."});
+            "1. Junior swimmers.", "2. Senior swimmers.", "3. Adult swimmers.", "4. Competitive swimmers over 18.",
+                    "5. Competitive swimmers under 18." , "6. Passive members"});
     Menu chairmanMenu = new Menu("====Chairman Menu====", "Please choose: ", new String[]
             {"1. Create new member", "2. View member list",
                     "3. Change membership status", "9. To go back"});
@@ -22,15 +19,15 @@ public class Chairman {
     }
 
     //Methods
-    public void chairmanMenu(Member member, MembersList membersList, Log log) throws IOException {
+    public void chairmanMenu(Member member, MembersList membersList, Log log,Trainer trainer) throws IOException {
         do {
             chairmanMenu.printMenu();
             int choice = chairmanMenu.readChoice();
 
             switch (choice) {
                 case 1 -> createMember(member, membersList, log);
-                case 2 -> printList(membersList);
-                case 3 -> makePassiveMember(membersList);
+                case 2 -> printList(membersList,trainer);
+                case 3 -> makePassiveMember(membersList, trainer);
                 case 9 -> isRunning = false;
                 default -> System.out.println("Invalid input.");
 
@@ -63,58 +60,42 @@ public class Chairman {
         }
     }
 
-    private void printList(MembersList membersList) {
+    private void printList(MembersList membersList, Trainer trainer) {
         memberLists.printMenu();
         int chooseList = memberLists.readChoice();
 
         switch (chooseList) {
-            case 1 -> {
-                for (Member member : membersList.juniorSwimmers) {
-                    System.out.println(member);
-                }
-            }
-            case 2 -> {
-                for (Member member : membersList.seniorSwimmers) {
-                    System.out.println(member);
-                }
-            }
-            case 3 -> {
-                for (Member member : membersList.adultSwimmers) {
-                    System.out.println(member);
-                }
-            }
-            case 4 -> {
-                for (Member member : membersList.adultCompetitiveSwimmers) {
-                    System.out.println(member);
-                }
-            }
-            case 5 -> {
-                for (Member member : membersList.juniorCompetitiveSwimmers) {
-                    System.out.println(member);
-                }
-            }
-            default -> {
+            case 1 -> trainer.printMembers(membersList.juniorSwimmers,"");
+
+            case 2 -> trainer.printMembers(membersList.seniorSwimmers,"");
+            case 3 -> trainer.printMembers(membersList.adultSwimmers,"");
+
+            case 4 -> trainer.printCompetitive(membersList.adultCompetitiveSwimmers,"");
+            case 5 -> trainer.printCompetitive(membersList.juniorCompetitiveSwimmers,"");
+
+            case 6 -> trainer.printMembers(membersList.passiveSwimmers,"");
+                        default -> {
                 System.out.println("Invalid input.");
                 memberLists.readChoice();
             }
         }
     }
 
-    private void makePassiveMember(MembersList membersList) {
+    private void makePassiveMember(MembersList membersList, Trainer trainer) {
         Scanner scanner = new Scanner(System.in);
         memberLists.printMenu();
         int chooseList = memberLists.readChoice();
 
         switch (chooseList) {
-            case 1 -> passiveMembers(scanner, membersList.juniorSwimmers, membersList);
+            case 1 -> passiveMembers(scanner, membersList.juniorSwimmers, membersList,trainer);
 
-            case 2 -> passiveMembers(scanner, membersList.seniorSwimmers, membersList);
+            case 2 -> passiveMembers(scanner, membersList.seniorSwimmers, membersList,trainer);
 
-            case 3 -> passiveMembers(scanner, membersList.adultSwimmers, membersList);
+            case 3 -> passiveMembers(scanner, membersList.adultSwimmers, membersList,trainer);
 
-            case 4 -> passiveMembers(scanner, membersList.adultCompetitiveSwimmers, membersList);
+            case 4 -> passiveCompetitiveMembers(scanner, membersList.adultCompetitiveSwimmers, membersList,trainer);
 
-            case 5 -> passiveMembers(scanner, membersList.juniorCompetitiveSwimmers, membersList);
+            case 5 -> passiveCompetitiveMembers(scanner, membersList.juniorCompetitiveSwimmers, membersList,trainer);
 
             default -> {
                 System.out.println("Invalid input.");
@@ -124,17 +105,20 @@ public class Chairman {
         System.out.println("You have now added member to passive list.");
     }
 
-    private void passiveMembers(Scanner scanner, ArrayList<Member> swimmer, MembersList membersList) {
-        int id = 0;
-        for (Member member : swimmer) {
-            System.out.print(id + 1 + "# ");
-            System.out.println(member);
-            id++;
-        }
+    private void passiveMembers(Scanner scanner, ArrayList<Member> swimmer, MembersList membersList, Trainer trainer) {
+        trainer.printMembers(swimmer,"");
         System.out.println("Please select the index of which member to make passive.");
         int index = scanner.nextInt();
-        membersList.passiveSwimmers.add(swimmer.get(index - 1));
-        swimmer.remove(index - 1);
+        membersList.passiveSwimmers.add(swimmer.get(index));
+        swimmer.remove(index);
     }
+    private void passiveCompetitiveMembers(Scanner scanner, ArrayList<Member> swimmer, MembersList membersList, Trainer trainer) {
+        trainer.printCompetitive(swimmer,"");
+        System.out.println("Please select the index of which member to make passive.");
+        int index = scanner.nextInt();
+        membersList.passiveSwimmers.add(swimmer.get(index));
+        swimmer.remove(index);
+    }
+
 
 }

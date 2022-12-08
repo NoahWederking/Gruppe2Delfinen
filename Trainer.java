@@ -10,11 +10,8 @@ public class Trainer {
 
     //Instances
     Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", new String[]{
-            "1. Junior swimmers." + "\n" +
-                    "2. Senior swimmers." + "\n" +
-                    "3. Adult swimmers." + "\n" +
-                    "4. Competitive swimmers over 18." + "\n" +
-                    "5. Competitive swimmers under 18."});
+            "1. Junior swimmers.", "2. Senior swimmers.", "3. Adult swimmers." , "4. Competitive swimmers over 18." ,
+            "5. Competitive swimmers under 18."});
     Menu trainerMenu = new Menu("====Trainer Menu====", "Please choose an action: ", new String[]
             {"1. View Competitive Team", "2. Make member competitive", "3. Change swim results",
                     "4. View top 5 swimmers", "9. To go back."});
@@ -51,8 +48,7 @@ public class Trainer {
     public void showTopFive(MembersList membersList) {
         Scanner scanner = new Scanner(System.in);
         competitiveMemberMenu.printMenu();
-        System.out.println("Please choose either adult or junior (1 , 2)");
-        int answer = scanner.nextInt();
+        int answer = competitiveMemberMenu.readChoice();
         if (answer == 1) {
             chooseTopFive(membersList.adultCompetitiveSwimmers);
 
@@ -61,38 +57,22 @@ public class Trainer {
         }
     }
 
-    public void chooseTopFive(ArrayList<Member> members) {
-        int id = 0;
+    public void chooseTopFive(ArrayList<Member> members) { //TODO FIX THIS
         Collections.sort(members, new SortSwimmersByTime());
-        for (Member member : members) {
-            System.out.print(id + 1 + "# ");
-            System.out.println(member.getName() + " " + member.getBestTime());
-            id++;
-        }
+        printCompetitive(members,"");
     }
 
     public void changeSwimResults(MembersList membersList) {
         competitiveMemberMenu.printMenu();
         int answer = competitiveMemberMenu.readChoice();
+        System.out.println("Please select a swimmer");
 
         switch (answer) {
-            case 1 -> {
-                int i = 0;
-                for (Member member : membersList.adultCompetitiveSwimmers) {
-                    System.out.print(i + 1 + "# ");
-                    System.out.println(member);
-                    i++;
-                }
-                newBestResult("adult", membersList);
-            }
+            case 1 -> {printCompetitive(membersList.juniorCompetitiveSwimmers,"");
+                newBestResult("junior", membersList);}
             case 2 -> {
-                int i = 0;
-                for (Member member : membersList.juniorCompetitiveSwimmers) {
-                    System.out.print(i + 1 + "# ");
-                    System.out.println(member);
-                    i++;
-                }
-                newBestResult("junior", membersList);
+                printCompetitive(membersList.adultCompetitiveSwimmers,"");
+                newBestResult("adult", membersList);
             }
         }
     }
@@ -104,11 +84,11 @@ public class Trainer {
         System.out.println("Please input the new best time.");
         double newBestTime = scanner.nextDouble();
         if (juniorOrAdult.equals("adult")) {
-            membersList.adultCompetitiveSwimmers.get(index - 1).setBestTime(newBestTime);
+            membersList.adultCompetitiveSwimmers.get(index).setBestTime(newBestTime);
             System.out.println("Result has now been updated.");
 
         } else {
-            membersList.juniorCompetitiveSwimmers.get(index - 1).setBestTime(newBestTime);
+            membersList.juniorCompetitiveSwimmers.get(index).setBestTime(newBestTime);
             System.out.println("Result has now been updated.");
         }
     }
@@ -149,12 +129,6 @@ public class Trainer {
             }
         }
     }
-//    public void setCompetitionAndDate(int index, ArrayList <Member> members, Scanner scanner){
-//        System.out.println("Please type in the competition: ");
-//        String competition = scanner.nextLine();
-//        members.get(index).setCompetition(competition);
-//
-//    }
 
     public void swimDisciplines(int index, ArrayList<Member> members) {
         swimDisciplinesMenu.printMenu();

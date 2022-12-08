@@ -29,7 +29,7 @@ public class Main {
             switch (choice) {
                 case 1 -> trainer.trainerMenu(member, membersList, log);
                 case 2 -> cashier.cashierMenu(membersList, trainer);
-                case 3 -> chairman.chairmanMenu(member, membersList, log);
+                case 3 -> chairman.chairmanMenu(member, membersList, log, trainer);
                 case 9 -> {
                     System.out.println("Quit");
                     isRunning = false;
