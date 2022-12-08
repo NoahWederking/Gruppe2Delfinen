@@ -7,13 +7,11 @@ public class Cashier {
     private final String adultPrice = "Price: 1600";
 
 
+
     //Instances
-    Menu memberMenu = new Menu("PRICE LISTS: ", "Please choose: ", new String[]{
-            "1. Junior swimmers." + "\n" +
-                    "2. Senior swimmers." + "\n" +
-                    "3. Adult swimmers."});
+
     Menu cashierMenu = new Menu("====Cashier Menu====", "Please choose: ", new String[]
-            {"1. View member state", "2. View missing payments", "9. To go back."});
+            {"1. View missing payments", "9. To go back."});
 
     public Cashier() {
     }
@@ -24,8 +22,7 @@ public class Cashier {
         int choice = cashierMenu.readChoice();
         do {
             switch (choice) {
-                case 1 -> viewMembershipState(membersList, trainer);
-                case 2 -> viewMissingPayments(membersList);
+                case 1 -> viewMissingPayments(membersList);
                 case 9 -> {
                     System.out.println("Quit");
                     isRunning = false;
@@ -49,25 +46,4 @@ public class Cashier {
         }
     }
 
-    public void viewMembershipState(MembersList membersList, Trainer trainer) {
-        memberMenu.printMenu();
-        int chooseList = memberMenu.readChoice();
-
-        switch (chooseList) {
-            case 1 -> trainer.printMembers(membersList.juniorSwimmers,juniorPrice);
-
-            case 2 -> trainer.printMembers(membersList.seniorSwimmers, seniorPrice);
-
-            case 3 -> trainer.printMembers(membersList.adultSwimmers, adultPrice);
-
-            case 4 -> {
-                String passivePrice = "Price: 500";
-                trainer.printMembers(membersList.passiveSwimmers, passivePrice);
-            }
-            default -> {
-                System.out.println("Invalid input.");
-                memberMenu.readChoice();
-            }
-        }
-    }
 }
