@@ -66,6 +66,7 @@ public class Member {
     public int getAge() {
         return age;
     }
+    //MVP
 
     @Override
     public String toString() {
