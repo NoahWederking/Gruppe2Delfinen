@@ -15,8 +15,7 @@ public class Trainer {
     Menu trainerMenu = new Menu("====Trainer Menu====", "Please choose an action: ", new String[]
             {"1. View Competitive Team", "2. Make member competitive", "3. Change swim results",
                     "4. View top 5 swimmers", "9. To go back."});
-
-    Menu swimDisciplinesMenu = new Menu("====Swim Disciplines====", "Please select a swimstyle:  "
+    Menu swimDisciplinesMenu = new Menu("====Swim Disciplines====", "Please select a swim style: "
             , new String[]{"1. Crawl", "2. Breast Stroke", "3. Butterfly"});
 
     Menu competitiveMemberMenu = new Menu("====Competitive Members====", "Please select a team",
@@ -45,8 +44,8 @@ public class Trainer {
         } while (isRunning);
     }
 
-    public void showTopFive(MembersList membersList) {
-        Scanner scanner = new Scanner(System.in);
+    public void showTopFive(MembersList membersList, Log log, Calender calender) throws IOException {
+        log.writeLine("\n" + calender.formattedDate + " VIEWING TOP FIVE");
         competitiveMemberMenu.printMenu();
         int answer = competitiveMemberMenu.readChoice();
         if (answer == 1) {
@@ -93,8 +92,8 @@ public class Trainer {
         }
     }
 
-    //TODO indsæt print arraylist metode fra noahs project
-    public void printMembers(ArrayList<Member> genericArrayList, String extra) {
+    public void printMembers(ArrayList<Member> genericArrayList, String extra, Calender calender, Log log) throws IOException {
+        log.writeLine("\n" + calender.formattedDate + " PRINTING MEMBERS");
         int i = 0;
         for (Member member : genericArrayList) {
             System.out.print(i + 0 + "# ");
@@ -160,13 +159,12 @@ public class Trainer {
         swimDisciplines(index, members);
         System.out.println("Please enter the members best time: ");
         members.get(index).setBestTime(scanner.nextDouble());
-        System.out.println("Please enter the members latest position: ");
+        System.out.println("Please enter the members latest position in a competition: ");
         members.get(index).setLatestPosition(scanner.nextInt());
-
     }
 
-    private void competitiveMembers(Scanner scanner, ArrayList<Member> members, Member member, MembersList membersList, Log log) throws IOException {
-        printMembers(members,"");
+    private void competitiveMembers(Scanner scanner, ArrayList<Member> members, MembersList membersList, Log log, Calender calender) throws IOException {
+        printMembers(members, "", calender, log);
         System.out.println("Please select the index of which member to make competitive.");
         int index = scanner.nextInt();
         getInformationAboutCompetitiveSwimmer(scanner, members, index);
