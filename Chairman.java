@@ -8,13 +8,17 @@ public class Chairman {
     private boolean isRunning;
 
     //Instances
-    Menu memberLists = new Menu("MEMBER LISTS: ", "Please choose: ", new String[]{
+    Menu memberLists = new Menu("=Member list=", "Please choose: ", new String[]{
             "1. Junior swimmers.", "2. Senior swimmers.", "3. Adult swimmers.", "4. Competitive swimmers over 18.",
                     "5. Competitive swimmers under 18." , "6. Passive members"});
     Menu chairmanMenu = new Menu("====Chairman Menu====", "Please choose: ", new String[]
-            {"1. Create new member", "2. View member list",
-                    "3. Change membership status", "9. To go back"});
+            {"1. Create new member", "2. View member list", "3. Change membership state", "9. To go back"});
 
+    Menu changeMembershipState = new Menu("MemberList", "Please choose:", new String[]{"1. Junior swimmers.",
+            "2. Senior swimmers.", "3. Adult swimmers.", "4. Competitive swimmers over 18.",
+            "5. Competitive swimmers under 18. "});
+
+    //Constructor
     public Chairman() {
     }
 
@@ -41,8 +45,7 @@ public class Chairman {
 
         System.out.println("Please insert new member age: ");
         member.setAge(scanner.nextInt());
-        //scanner.nextLine(); Scanner bug
-        checkAge(member, membersList, log);
+        checkAge(member, membersList, log, calender);
     }
 
     private void checkAge(Member member, MembersList membersList, Log log) throws IOException {
@@ -83,8 +86,8 @@ public class Chairman {
 
     private void makePassiveMember(MembersList membersList, Trainer trainer) {
         Scanner scanner = new Scanner(System.in);
-        memberLists.printMenu();
-        int chooseList = memberLists.readChoice();
+        changeMembershipState.printMenu();
+        int chooseList = changeMembershipState.readChoice();
 
         switch (chooseList) {
             case 1 -> passiveMembers(scanner, membersList.juniorSwimmers, membersList,trainer);

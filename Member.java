@@ -10,7 +10,6 @@ public class Member {
 
     //Constructor
     public Member() {
-
     }
     public Member(String name, int age) {
         setName(name);
@@ -46,8 +45,6 @@ public class Member {
         this.latestPosition = latestPosition;
     }
 
-
-
     //Getters
     public String getSwimStyle() {
         return swimStyle;
@@ -65,14 +62,6 @@ public class Member {
 
     public int getAge() {
         return age;
-    }
-    //MVP
-
-    @Override
-    public String toString() {
-        return " Member: " + "Name: " + getName() + " Age: " + getAge() +
-                " Swim style: " + getSwimStyle() + " Best time: " +
-                getBestTime() + " Latest position: " + getLatestPosition();
     }
 }
 
